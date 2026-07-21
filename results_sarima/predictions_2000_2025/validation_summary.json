@@ -1,0 +1,16 @@
+{
+  "parameters_rows": 9892,
+  "unique_parameter_points": 9892,
+  "converged": 9862,
+  "prediction_rows": 3086304,
+  "expected_rows": 3086304,
+  "unique_prediction_points": 9892,
+  "date_min": 200001,
+  "date_max": 202512,
+  "missing_cells": 0,
+  "invalid_intervals": 0,
+  "prediction_min_celsius": -11.420505334925744,
+  "prediction_max_celsius": 47.28934028420017,
+  "parameters_size_mb": 2.32,
+  "predictions_gzip_size_mb": 79.41
+}
