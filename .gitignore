@@ -1,0 +1,24 @@
+# Environnements et caches Python
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Données SAFRAN/SIM volumineuses et fichiers générés
+data/raw/
+data/interim/
+data/processed/*.csv
+Yann/data/
+ndambo/data/processed/*.npz
+ndambo/data/processed/*.csv
+results_sarima/all_grid_points/monthly_grid_temperature.csv
+
+# Pilotes et binaires NVIDIA locaux
+ndambo/vendor/
+
+# Fichiers temporaires
+*.tmp
+*.log
+.DS_Store
+

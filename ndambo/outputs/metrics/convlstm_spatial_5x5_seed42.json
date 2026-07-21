@@ -1,0 +1,49 @@
+{
+    "model": "ConvLSTM_spatial_center",
+    "center_lambx": 6440,
+    "center_lamby": 22010,
+    "patch_size": 5,
+    "channels": [
+        "T",
+        "TINF_H",
+        "TSUP_H",
+        "DOY_SIN",
+        "DOY_COS"
+    ],
+    "input_length_days": 30,
+    "forecast_horizon_days": 1,
+    "number_of_test_sequences": 2162,
+    "best_epoch": 40,
+    "best_validation_loss": 0.08191567867277177,
+    "training_duration_seconds": 107.08565017674118,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "number_of_parameters": 266305,
+    "persistence_metrics": {
+        "MAE_C": 1.7561517062422085,
+        "MSE_C2": 5.009981457192377,
+        "RMSE_C": 2.2382987863983614,
+        "BIAS_C": -0.0012025802045591886,
+        "R2": 0.884230741209879
+    },
+    "tcn_reference_metrics": {
+        "MAE_C": 1.5849478108038184,
+        "MSE_C2": 3.979613304964481,
+        "RMSE_C": 1.9948968156184121,
+        "BIAS_C": -0.09963436395784532,
+        "R2": 0.9080402060126299
+    },
+    "convlstm_metrics": {
+        "MAE_C": 1.500414818993991,
+        "MSE_C2": 3.616953977729841,
+        "RMSE_C": 1.9018291137033951,
+        "BIAS_C": -0.11828889436571825,
+        "R2": 0.9164204329581643
+    },
+    "comparison": {
+        "MAE_improvement_vs_persistence_percent": 14.562345971547078,
+        "RMSE_improvement_vs_persistence_percent": 15.032384181219095,
+        "MAE_improvement_vs_TCN_percent": 5.333487401516134,
+        "RMSE_improvement_vs_TCN_percent": 4.665289010758499
+    }
+}

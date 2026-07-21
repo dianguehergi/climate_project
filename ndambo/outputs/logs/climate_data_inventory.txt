@@ -1,0 +1,7 @@
+data/interim/safran_mens_brut.csv | 527333246 octets
+data/interim/safran_quot_brut.csv | 20593779004 octets
+data/processed/anomalies_mensuelles.csv | 148976 octets
+data/processed/anomalies_quotidiennes.csv | 68643451 octets
+data/processed/first_point_T_daily.csv | 228408 octets
+data/processed/safran_mens_clean.csv | 527333246 octets
+data/processed/safran_quot_clean.csv | 20593779004 octets

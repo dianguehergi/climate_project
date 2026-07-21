@@ -1,0 +1,70 @@
+================================================================================
+CONVLSTM GLOBAL MULTI-POINTS SAFRAN
+================================================================================
+GPU : NVIDIA GeForce RTX 4090
+Tenseur : (14610, 100, 5, 5, 5)
+Centres : (100, 2)
+Canaux  : ['T', 'TINF_H', 'TSUP_H', 'DOY_SIN', 'DOY_COS']
+Séquences train      : 1,019,700
+Séquences validation : 216,100
+Séquences test       : 216,200
+Paramètres entraînables : 266,305
+Époque 001/30 | train=0.103962 | val=0.072255 | lr=1.00e-03
+Époque 002/30 | train=0.080184 | val=0.073832 | lr=1.00e-03
+Époque 003/30 | train=0.078764 | val=0.069958 | lr=1.00e-03
+Époque 004/30 | train=0.078138 | val=0.071068 | lr=1.00e-03
+Époque 005/30 | train=0.076866 | val=0.075004 | lr=1.00e-03
+Époque 006/30 | train=0.076370 | val=0.072251 | lr=1.00e-03
+Époque 007/30 | train=0.076122 | val=0.071024 | lr=1.00e-03
+Époque 008/30 | train=0.075463 | val=0.072576 | lr=5.00e-04
+Époque 009/30 | train=0.074413 | val=0.069913 | lr=5.00e-04
+Époque 010/30 | train=0.074276 | val=0.070334 | lr=5.00e-04
+Époque 011/30 | train=0.073270 | val=0.070015 | lr=5.00e-04
+Époque 012/30 | train=0.073836 | val=0.071016 | lr=5.00e-04
+Époque 013/30 | train=0.074183 | val=0.070616 | lr=5.00e-04
+Époque 014/30 | train=0.073226 | val=0.069251 | lr=5.00e-04
+Époque 015/30 | train=0.072517 | val=0.070170 | lr=5.00e-04
+Époque 016/30 | train=0.072991 | val=0.070177 | lr=5.00e-04
+Époque 017/30 | train=0.072298 | val=0.069363 | lr=5.00e-04
+Époque 018/30 | train=0.072058 | val=0.068907 | lr=5.00e-04
+Époque 019/30 | train=0.072068 | val=0.073246 | lr=5.00e-04
+Époque 020/30 | train=0.071550 | val=0.070251 | lr=5.00e-04
+Époque 021/30 | train=0.070755 | val=0.069245 | lr=5.00e-04
+Époque 022/30 | train=0.071335 | val=0.069663 | lr=5.00e-04
+Époque 023/30 | train=0.070853 | val=0.071053 | lr=2.50e-04
+Époque 024/30 | train=0.069362 | val=0.071466 | lr=2.50e-04
+Époque 025/30 | train=0.069066 | val=0.070151 | lr=2.50e-04
+Époque 026/30 | train=0.068580 | val=0.071273 | lr=2.50e-04
+Époque 027/30 | train=0.068718 | val=0.070855 | lr=2.50e-04
+Époque 028/30 | train=0.067655 | val=0.071436 | lr=1.25e-04
+Époque 029/30 | train=0.066754 | val=0.071475 | lr=1.25e-04
+Époque 030/30 | train=0.066505 | val=0.071465 | lr=1.25e-04
+
+Arrêt anticipé : aucune amélioration depuis 12 époques.
+
+================================================================================
+RÉSULTATS CONVLSTM GLOBAL MULTI-POINTS
+================================================================================
+Meilleure époque : 18
+Durée             : 471.2s
+
+Persistance :
+MAE  : 1.6418 °C
+RMSE : 2.1332 °C
+
+ConvLSTM global :
+MAE  : 1.4236 °C
+RMSE : 1.8316 °C
+Biais: -0.0915 °C
+R²   : 0.9283
+
+Amélioration :
+MAE  : 13.29 %
+RMSE : 14.14 %
+
+Fichiers créés :
+- Modèle      : /home/lab-c0de80861d/climate_project/ndambo/outputs/models/convlstm_many_centers_100_best.pt
+- Métriques   : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/convlstm_many_centers_100_metrics.json
+- Historique  : /home/lab-c0de80861d/climate_project/ndambo/outputs/logs/convlstm_many_centers_100_history.csv
+- Prédictions : /home/lab-c0de80861d/climate_project/ndambo/outputs/predictions/convlstm_many_centers_100_predictions_sample.csv
+- Figure      : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/convlstm_many_centers_100_loss.png

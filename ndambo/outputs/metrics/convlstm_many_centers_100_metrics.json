@@ -1,0 +1,39 @@
+{
+    "model": "ConvLSTM_many_centers",
+    "number_of_centers": 100,
+    "patch_size": 5,
+    "channels": [
+        "T",
+        "TINF_H",
+        "TSUP_H",
+        "DOY_SIN",
+        "DOY_COS"
+    ],
+    "number_of_parameters": 266305,
+    "train_sequences_total": 1019700,
+    "validation_sequences_total": 216100,
+    "test_sequences_total": 216200,
+    "train_samples_per_epoch": 250000,
+    "validation_samples_per_epoch": 60000,
+    "best_epoch": 18,
+    "best_validation_loss": 0.06890686590274175,
+    "training_duration_seconds": 471.1661114008166,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "persistence_metrics": {
+        "MAE_C": 1.6418288643178802,
+        "MSE_C2": 4.5503359882036065,
+        "RMSE_C": 2.1331516561659667,
+        "BIAS_C": -1.5729275410589965e-05,
+        "R2": 0.902688118962787
+    },
+    "convlstm_metrics": {
+        "MAE_C": 1.423562835958906,
+        "MSE_C2": 3.3546892024414596,
+        "RMSE_C": 1.8315810663034982,
+        "BIAS_C": -0.09150415531250197,
+        "R2": 0.9282577995490651
+    },
+    "MAE_improvement_vs_persistence_percent": 13.294079127403796,
+    "RMSE_improvement_vs_persistence_percent": 14.13732535100192
+}

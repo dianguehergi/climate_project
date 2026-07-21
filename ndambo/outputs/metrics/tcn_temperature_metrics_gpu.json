@@ -1,0 +1,25 @@
+{
+    "MAE_C": 1.1539626820676312,
+    "MSE_C2": 2.3087202729880367,
+    "RMSE_C": 1.5194473577547978,
+    "BIAS_C": -0.020537390298693406,
+    "R2": 0.8587180548120356,
+    "model": "TCN",
+    "target": "T",
+    "input_length_days": 30,
+    "forecast_horizon_days": 1,
+    "number_of_test_sequences": 2162,
+    "best_epoch": 10,
+    "best_validation_loss": 0.11526659539263318,
+    "training_duration_seconds": 7.245685630477965,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "train_mean": 11.290534858707344,
+    "train_std": 4.412303706131534,
+    "baseline_comparison": {
+        "baseline_MAE_C": 1.2251156279257225,
+        "baseline_RMSE_C": 1.614952398183808,
+        "MAE_improvement_percent": 5.807855539200192,
+        "RMSE_improvement_percent": 5.9137991024637175
+    }
+}

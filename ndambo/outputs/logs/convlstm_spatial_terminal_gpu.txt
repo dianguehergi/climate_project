@@ -1,0 +1,109 @@
+================================================================================
+ENTRAÎNEMENT DU CONVLSTM SPATIAL
+================================================================================
+Appareil : cuda
+GPU      : NVIDIA GeForce RTX 4090
+Tenseur brut : (14610, 5, 5, 5)
+Canaux       : ['T', 'TINF_H', 'TSUP_H', 'DOY_SIN', 'DOY_COS']
+Centre       : ligne=2, colonne=2
+Séquences train      : 10,197
+Séquences validation : 2,161
+Séquences test       : 2,162
+Paramètres entraînables : 266,305
+Époque 001/120 | train=0.193672 | val=0.106057 | lr=1.00e-03
+Époque 002/120 | train=0.114099 | val=0.101089 | lr=1.00e-03
+Époque 003/120 | train=0.106906 | val=0.095915 | lr=1.00e-03
+Époque 004/120 | train=0.105428 | val=0.099091 | lr=1.00e-03
+Époque 005/120 | train=0.100982 | val=0.089558 | lr=1.00e-03
+Époque 006/120 | train=0.099409 | val=0.088043 | lr=1.00e-03
+Époque 007/120 | train=0.097236 | val=0.086501 | lr=1.00e-03
+Époque 008/120 | train=0.095870 | val=0.084848 | lr=1.00e-03
+Époque 009/120 | train=0.096680 | val=0.084221 | lr=1.00e-03
+Époque 010/120 | train=0.094262 | val=0.083586 | lr=1.00e-03
+Époque 011/120 | train=0.094648 | val=0.085202 | lr=1.00e-03
+Époque 012/120 | train=0.094396 | val=0.083053 | lr=1.00e-03
+Époque 013/120 | train=0.095611 | val=0.098086 | lr=1.00e-03
+Époque 014/120 | train=0.094184 | val=0.087799 | lr=1.00e-03
+Époque 015/120 | train=0.094264 | val=0.089314 | lr=1.00e-03
+Époque 016/120 | train=0.092860 | val=0.087887 | lr=1.00e-03
+Époque 017/120 | train=0.092908 | val=0.084208 | lr=1.00e-03
+Époque 018/120 | train=0.094759 | val=0.082860 | lr=1.00e-03
+Époque 019/120 | train=0.092189 | val=0.084394 | lr=1.00e-03
+Époque 020/120 | train=0.091611 | val=0.084194 | lr=1.00e-03
+Époque 021/120 | train=0.092329 | val=0.083323 | lr=1.00e-03
+Époque 022/120 | train=0.092203 | val=0.084038 | lr=1.00e-03
+Époque 023/120 | train=0.090630 | val=0.086644 | lr=1.00e-03
+Époque 024/120 | train=0.091154 | val=0.085001 | lr=1.00e-03
+Époque 025/120 | train=0.092914 | val=0.095790 | lr=5.00e-04
+Époque 026/120 | train=0.089153 | val=0.082042 | lr=5.00e-04
+Époque 027/120 | train=0.088386 | val=0.083489 | lr=5.00e-04
+Époque 028/120 | train=0.088330 | val=0.082005 | lr=5.00e-04
+Époque 029/120 | train=0.087443 | val=0.082617 | lr=5.00e-04
+Époque 030/120 | train=0.087997 | val=0.083010 | lr=5.00e-04
+Époque 031/120 | train=0.087457 | val=0.082688 | lr=5.00e-04
+Époque 032/120 | train=0.087967 | val=0.085112 | lr=5.00e-04
+Époque 033/120 | train=0.087235 | val=0.082816 | lr=5.00e-04
+Époque 034/120 | train=0.087369 | val=0.083476 | lr=5.00e-04
+Époque 035/120 | train=0.087796 | val=0.082395 | lr=2.50e-04
+Époque 036/120 | train=0.085144 | val=0.084894 | lr=2.50e-04
+Époque 037/120 | train=0.085613 | val=0.082544 | lr=2.50e-04
+Époque 038/120 | train=0.085726 | val=0.086681 | lr=2.50e-04
+Époque 039/120 | train=0.084409 | val=0.084088 | lr=2.50e-04
+Époque 040/120 | train=0.085330 | val=0.081916 | lr=2.50e-04
+Époque 041/120 | train=0.086427 | val=0.086137 | lr=2.50e-04
+Époque 042/120 | train=0.085560 | val=0.082482 | lr=2.50e-04
+Époque 043/120 | train=0.085983 | val=0.082482 | lr=2.50e-04
+Époque 044/120 | train=0.086511 | val=0.082549 | lr=2.50e-04
+Époque 045/120 | train=0.085542 | val=0.084238 | lr=2.50e-04
+Époque 046/120 | train=0.085307 | val=0.083864 | lr=2.50e-04
+Époque 047/120 | train=0.084341 | val=0.083292 | lr=1.25e-04
+Époque 048/120 | train=0.084833 | val=0.083745 | lr=1.25e-04
+Époque 049/120 | train=0.083998 | val=0.082721 | lr=1.25e-04
+Époque 050/120 | train=0.083252 | val=0.083088 | lr=1.25e-04
+Époque 051/120 | train=0.082864 | val=0.084894 | lr=1.25e-04
+Époque 052/120 | train=0.082784 | val=0.084074 | lr=1.25e-04
+Époque 053/120 | train=0.082721 | val=0.083982 | lr=1.25e-04
+Époque 054/120 | train=0.082861 | val=0.083668 | lr=6.25e-05
+Époque 055/120 | train=0.083399 | val=0.083285 | lr=6.25e-05
+Époque 056/120 | train=0.083567 | val=0.083075 | lr=6.25e-05
+Époque 057/120 | train=0.082780 | val=0.083236 | lr=6.25e-05
+Époque 058/120 | train=0.082745 | val=0.085490 | lr=6.25e-05
+Époque 059/120 | train=0.083617 | val=0.083994 | lr=6.25e-05
+Époque 060/120 | train=0.081755 | val=0.084912 | lr=6.25e-05
+
+Arrêt anticipé : aucune amélioration depuis 20 époques.
+
+================================================================================
+RÉSULTATS DU CONVLSTM SPATIAL
+================================================================================
+Meilleure époque : 40
+
+Persistance :
+MAE  : 1.7562 °C
+RMSE : 2.2383 °C
+
+TCN temporel :
+MAE  : 1.5849 °C
+RMSE : 1.9949 °C
+
+ConvLSTM spatial :
+MAE  : 1.5004 °C
+RMSE : 1.9018 °C
+Biais: -0.1183 °C
+R²   : 0.9164
+
+Comparaisons :
+MAE_improvement_vs_persistence_percent : 14.56 %
+RMSE_improvement_vs_persistence_percent : 15.03 %
+MAE_improvement_vs_TCN_percent : 5.33 %
+RMSE_improvement_vs_TCN_percent : 4.67 %
+
+Durée : 107.09 secondes
+
+Fichiers créés :
+- Modèle      : /home/lab-c0de80861d/climate_project/ndambo/outputs/models/convlstm_spatial_center_best.pt
+- Métriques   : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/convlstm_spatial_center_metrics.json
+- Prédictions : /home/lab-c0de80861d/climate_project/ndambo/outputs/predictions/convlstm_spatial_center_predictions.csv
+- Historique  : /home/lab-c0de80861d/climate_project/ndambo/outputs/logs/convlstm_spatial_center_history.csv
+- Perte       : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/convlstm_spatial_center_loss.png
+- Prévisions  : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/convlstm_spatial_center_predictions.png

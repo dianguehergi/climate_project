@@ -1,0 +1,22 @@
+{
+    "iterations": 5000,
+    "block_length_days": 30,
+    "MAE_difference_TCN_minus_ConvLSTM_C": {
+        "mean": 0.08466760657143386,
+        "confidence_interval_95": [
+            0.05992701205365417,
+            0.11031267335846463
+        ],
+        "probability_ConvLSTM_better": 1.0
+    },
+    "RMSE_difference_TCN_minus_ConvLSTM_C": {
+        "mean": 0.09269592242577128,
+        "confidence_interval_95": [
+            0.06394180056374305,
+            0.12179135136546336
+        ],
+        "probability_ConvLSTM_better": 1.0
+    },
+    "cold_threshold_C": 2.5,
+    "hot_threshold_C": 20.1
+}

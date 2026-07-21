@@ -1,0 +1,30 @@
+{
+    "source": "/home/lab-c0de80861d/climate_project/data/processed/safran_quot_clean.csv",
+    "patch_size": 1,
+    "grid_step": 80,
+    "number_of_days": 14610,
+    "number_of_centers": 9892,
+    "number_of_complete_centers_available": 9892,
+    "number_of_unique_required_points": 9892,
+    "channels": [
+        "T",
+        "TINF_H",
+        "TSUP_H",
+        "DOY_SIN",
+        "DOY_COS"
+    ],
+    "data_shape": [
+        14610,
+        9892,
+        5,
+        1,
+        1
+    ],
+    "date_start": "1960-01-01",
+    "date_end": "1999-12-31",
+    "target": "T au centre du patch à J+1",
+    "center_row": 0,
+    "center_column": 0,
+    "retained_rows": 144522120,
+    "total_rows_scanned": 144522120
+}

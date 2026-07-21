@@ -1,0 +1,71 @@
+================================================================================
+ENTRAÎNEMENT DU TCN MULTIVARIÉ
+================================================================================
+Appareil          : cuda
+GPU               : NVIDIA GeForce RTX 4090
+Nombre de variables : 14
+Variables         : T, PRETOT, FF, Q, SSI, HU, ETP, SWI, SSWI_10J, DRAINC, TINF_H, TSUP_H, DOY_SIN, DOY_COS
+X train      : (10197, 14, 30)
+X validation : (2161, 14, 30)
+X test       : (2162, 14, 30)
+Paramètres entraînables : 52,449
+Époque 001/150 | train=2.807837 | val=0.144106 | lr=1.00e-03
+Époque 002/150 | train=0.220135 | val=0.134468 | lr=1.00e-03
+Époque 003/150 | train=0.183936 | val=0.124798 | lr=1.00e-03
+Époque 004/150 | train=0.170633 | val=0.121842 | lr=1.00e-03
+Époque 005/150 | train=0.162427 | val=0.118201 | lr=1.00e-03
+Époque 006/150 | train=0.155261 | val=0.120752 | lr=1.00e-03
+Époque 007/150 | train=0.155498 | val=0.117676 | lr=1.00e-03
+Époque 008/150 | train=0.146993 | val=0.115904 | lr=1.00e-03
+Époque 009/150 | train=0.145810 | val=0.113652 | lr=1.00e-03
+Époque 010/150 | train=0.139483 | val=0.112189 | lr=1.00e-03
+Époque 011/150 | train=0.137157 | val=0.113205 | lr=1.00e-03
+Époque 012/150 | train=0.134472 | val=0.111627 | lr=1.00e-03
+Époque 013/150 | train=0.133085 | val=0.109997 | lr=1.00e-03
+Époque 014/150 | train=0.130867 | val=0.110025 | lr=1.00e-03
+Époque 015/150 | train=0.126700 | val=0.109905 | lr=1.00e-03
+Époque 016/150 | train=0.124269 | val=0.111836 | lr=1.00e-03
+Époque 017/150 | train=0.122686 | val=0.106766 | lr=1.00e-03
+Époque 018/150 | train=0.119891 | val=0.107822 | lr=1.00e-03
+Époque 019/150 | train=0.117775 | val=0.108709 | lr=1.00e-03
+Époque 020/150 | train=0.115641 | val=0.112121 | lr=1.00e-03
+Époque 021/150 | train=0.111918 | val=0.110234 | lr=1.00e-03
+Époque 022/150 | train=0.114886 | val=0.110659 | lr=1.00e-03
+Époque 023/150 | train=0.109925 | val=0.114355 | lr=1.00e-03
+Époque 024/150 | train=0.109354 | val=0.110449 | lr=5.00e-04
+Époque 025/150 | train=0.101427 | val=0.112250 | lr=5.00e-04
+Époque 026/150 | train=0.101455 | val=0.113433 | lr=5.00e-04
+Époque 027/150 | train=0.098083 | val=0.113785 | lr=5.00e-04
+Époque 028/150 | train=0.097587 | val=0.115547 | lr=5.00e-04
+Époque 029/150 | train=0.094095 | val=0.111758 | lr=5.00e-04
+Époque 030/150 | train=0.095116 | val=0.114697 | lr=5.00e-04
+Époque 031/150 | train=0.092737 | val=0.115548 | lr=2.50e-04
+Époque 032/150 | train=0.090225 | val=0.115976 | lr=2.50e-04
+Époque 033/150 | train=0.088900 | val=0.116037 | lr=2.50e-04
+Époque 034/150 | train=0.089347 | val=0.114705 | lr=2.50e-04
+Époque 035/150 | train=0.089240 | val=0.115460 | lr=2.50e-04
+Époque 036/150 | train=0.087138 | val=0.116736 | lr=2.50e-04
+Époque 037/150 | train=0.085370 | val=0.117119 | lr=2.50e-04
+
+Arrêt anticipé : aucune amélioration depuis 20 époques.
+
+================================================================================
+RÉSULTATS DU TCN MULTIVARIÉ
+================================================================================
+Meilleure époque : 17
+MAE              : 1.1099 °C
+RMSE             : 1.4400 °C
+Biais            : -0.1338 °C
+R²               : 0.8731
+Durée            : 8.79 secondes
+MAE_improvement_vs_baseline_percent : 9.40 %
+RMSE_improvement_vs_baseline_percent : 10.83 %
+MAE_improvement_vs_univariate_percent : 3.82 %
+RMSE_improvement_vs_univariate_percent : 5.23 %
+
+Fichiers créés :
+- Modèle      : /home/lab-c0de80861d/climate_project/ndambo/outputs/models/tcn_multivariate_temperature_best.pt
+- Métriques   : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/tcn_multivariate_temperature_metrics.json
+- Prédictions : /home/lab-c0de80861d/climate_project/ndambo/outputs/predictions/tcn_multivariate_temperature_predictions.csv
+- Perte       : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/tcn_multivariate_training_loss.png
+- Prévisions  : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/tcn_multivariate_temperature_predictions.png

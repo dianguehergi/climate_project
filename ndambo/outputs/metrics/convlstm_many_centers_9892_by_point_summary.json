@@ -1,0 +1,14 @@
+{
+    "number_of_points": 9892,
+    "MAE_mean": 1.4317281306802239,
+    "MAE_std": 0.13305154736426264,
+    "MAE_min": 0.8937340974807739,
+    "MAE_max": 2.0788683891296387,
+    "RMSE_mean": 1.8438492936978106,
+    "RMSE_std": 0.16756263605915003,
+    "R2_mean": 0.9154494359480723,
+    "MAE_improvement_mean_percent": 12.890292031881083,
+    "RMSE_improvement_mean_percent": 13.27232093263198,
+    "points_with_positive_MAE_improvement": 9877,
+    "points_with_negative_MAE_improvement": 15
+}

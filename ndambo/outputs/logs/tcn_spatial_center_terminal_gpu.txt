@@ -1,0 +1,85 @@
+================================================================================
+TCN DE RÉFÉRENCE DU CENTRE SPATIAL
+================================================================================
+Appareil : cuda
+GPU      : NVIDIA GeForce RTX 4090
+Variables : T, TINF_H, TSUP_H, DOY_SIN, DOY_COS
+Dimensions : (14610, 9)
+Période    : 1960-01-01 → 1999-12-31
+X train      : (10197, 5, 30)
+X validation : (2161, 5, 30)
+X test       : (2162, 5, 30)
+Paramètres entraînables : 51,297
+Époque 001/150 | train=3.550863 | val=0.129598 | lr=1.00e-03
+Époque 002/150 | train=0.156282 | val=0.114169 | lr=1.00e-03
+Époque 003/150 | train=0.143946 | val=0.115945 | lr=1.00e-03
+Époque 004/150 | train=0.134301 | val=0.109421 | lr=1.00e-03
+Époque 005/150 | train=0.125979 | val=0.109234 | lr=1.00e-03
+Époque 006/150 | train=0.125528 | val=0.108865 | lr=1.00e-03
+Époque 007/150 | train=0.120260 | val=0.109030 | lr=1.00e-03
+Époque 008/150 | train=0.120138 | val=0.100617 | lr=1.00e-03
+Époque 009/150 | train=0.116713 | val=0.104769 | lr=1.00e-03
+Époque 010/150 | train=0.116993 | val=0.100702 | lr=1.00e-03
+Époque 011/150 | train=0.111291 | val=0.097526 | lr=1.00e-03
+Époque 012/150 | train=0.108650 | val=0.095692 | lr=1.00e-03
+Époque 013/150 | train=0.109013 | val=0.095627 | lr=1.00e-03
+Époque 014/150 | train=0.105914 | val=0.095158 | lr=1.00e-03
+Époque 015/150 | train=0.104886 | val=0.093289 | lr=1.00e-03
+Époque 016/150 | train=0.104414 | val=0.095444 | lr=1.00e-03
+Époque 017/150 | train=0.102329 | val=0.092534 | lr=1.00e-03
+Époque 018/150 | train=0.101463 | val=0.093355 | lr=1.00e-03
+Époque 019/150 | train=0.100765 | val=0.093521 | lr=1.00e-03
+Époque 020/150 | train=0.100090 | val=0.090825 | lr=1.00e-03
+Époque 021/150 | train=0.097938 | val=0.093129 | lr=1.00e-03
+Époque 022/150 | train=0.099016 | val=0.093031 | lr=1.00e-03
+Époque 023/150 | train=0.095844 | val=0.090810 | lr=1.00e-03
+Époque 024/150 | train=0.095690 | val=0.090324 | lr=1.00e-03
+Époque 025/150 | train=0.095529 | val=0.091321 | lr=1.00e-03
+Époque 026/150 | train=0.095255 | val=0.093147 | lr=1.00e-03
+Époque 027/150 | train=0.095374 | val=0.092877 | lr=1.00e-03
+Époque 028/150 | train=0.093813 | val=0.090466 | lr=1.00e-03
+Époque 029/150 | train=0.092928 | val=0.092356 | lr=1.00e-03
+Époque 030/150 | train=0.093228 | val=0.093726 | lr=1.00e-03
+Époque 031/150 | train=0.090973 | val=0.093366 | lr=5.00e-04
+Époque 032/150 | train=0.090006 | val=0.091847 | lr=5.00e-04
+Époque 033/150 | train=0.087988 | val=0.092346 | lr=5.00e-04
+Époque 034/150 | train=0.086661 | val=0.092575 | lr=5.00e-04
+Époque 035/150 | train=0.086006 | val=0.091994 | lr=5.00e-04
+Époque 036/150 | train=0.085916 | val=0.094782 | lr=5.00e-04
+Époque 037/150 | train=0.085846 | val=0.092959 | lr=5.00e-04
+Époque 038/150 | train=0.085208 | val=0.093863 | lr=2.50e-04
+Époque 039/150 | train=0.083590 | val=0.093865 | lr=2.50e-04
+Époque 040/150 | train=0.081978 | val=0.092663 | lr=2.50e-04
+Époque 041/150 | train=0.083054 | val=0.093329 | lr=2.50e-04
+Époque 042/150 | train=0.081224 | val=0.093058 | lr=2.50e-04
+Époque 043/150 | train=0.082615 | val=0.093380 | lr=2.50e-04
+Époque 044/150 | train=0.082189 | val=0.093512 | lr=2.50e-04
+
+Arrêt anticipé : aucune amélioration depuis 20 époques.
+
+================================================================================
+RÉSULTATS DU TCN DU CENTRE
+================================================================================
+Meilleure époque : 24
+
+Persistance :
+MAE  : 1.7562 °C
+RMSE : 2.2383 °C
+
+TCN centre :
+MAE  : 1.5849 °C
+RMSE : 1.9949 °C
+Biais: -0.0996 °C
+R²   : 0.9080
+
+Amélioration MAE : 9.75 %
+Amélioration RMSE : 10.87 %
+Durée : 9.81 secondes
+
+Fichiers créés :
+- Modèle      : /home/lab-c0de80861d/climate_project/ndambo/outputs/models/tcn_spatial_center_best.pt
+- Métriques   : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/tcn_spatial_center_metrics.json
+- Prédictions : /home/lab-c0de80861d/climate_project/ndambo/outputs/predictions/tcn_spatial_center_predictions.csv
+- Historique  : /home/lab-c0de80861d/climate_project/ndambo/outputs/logs/tcn_spatial_center_history.csv
+- Perte       : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/tcn_spatial_center_loss.png
+- Prévisions  : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/tcn_spatial_center_predictions.png

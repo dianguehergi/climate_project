@@ -1,0 +1,25 @@
+{
+    "MAE_C": 1.1557445665071895,
+    "MSE_C2": 2.3199163675023495,
+    "RMSE_C": 1.5231271672130169,
+    "BIAS_C": -0.027331678432849244,
+    "R2": 0.8580329107389326,
+    "model": "TCN",
+    "target": "T",
+    "input_length_days": 30,
+    "forecast_horizon_days": 1,
+    "number_of_test_sequences": 2162,
+    "best_epoch": 20,
+    "best_validation_loss": 0.11535308863459115,
+    "training_duration_seconds": 61.56751361209899,
+    "device": "cpu",
+    "gpu": null,
+    "train_mean": 11.290534858707344,
+    "train_std": 4.412303706131534,
+    "baseline_comparison": {
+        "baseline_MAE_C": 1.2251156279257225,
+        "baseline_RMSE_C": 1.614952398183808,
+        "MAE_improvement_percent": 5.66240931364063,
+        "RMSE_improvement_percent": 5.685940407535156
+    }
+}
