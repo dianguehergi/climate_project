@@ -1,0 +1,26 @@
+{
+    "number_of_points": 9892,
+    "test_sequences_per_point": 2162,
+    "total_test_sequences": 21386504,
+    "complete_5x5_points": 8415,
+    "incomplete_5x5_points": 1477,
+    "global_persistence_metrics": {
+        "MAE_C": 1.6453757300946,
+        "RMSE_C": 2.1364296137518055,
+        "BIAS_C": -0.00028417919085563665,
+        "R2": 0.9051027849768989
+    },
+    "global_convlstm_metrics": {
+        "MAE_C": 1.4221074698193112,
+        "RMSE_C": 1.8326076279525734,
+        "BIAS_C": -0.07846554819282292,
+        "R2": 0.930174304754963
+    },
+    "global_MAE_improvement_percent": 13.56943925886472,
+    "global_RMSE_improvement_percent": 14.221015466345614,
+    "MAE_mean_by_point": 1.4221074698193115,
+    "RMSE_mean_by_point": 1.8240861603040042,
+    "R2_mean_by_point": 0.917148986013134,
+    "points_with_positive_MAE_improvement": 9836,
+    "points_with_negative_MAE_improvement": 56
+}

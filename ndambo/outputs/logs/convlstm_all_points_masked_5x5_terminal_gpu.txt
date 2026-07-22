@@ -1,0 +1,59 @@
+================================================================================
+CONVLSTM 5×5 MASQUÉ — TOUS LES 9 892 POINTS SAFRAN
+================================================================================
+GPU : NVIDIA GeForce RTX 4090
+Données : (14610, 9892, 5)
+Centres : (9892, 2)
+Canaux initiaux : ['T', 'TINF_H', 'TSUP_H', 'DOY_SIN', 'DOY_COS']
+Patchs complets : 8,415
+Patchs incomplets : 1,477
+Cellules moyennes disponibles : 24.08/25
+Paramètres entraînables : 267,457
+Époque 001/30 | train=0.104196 | val=0.071789 | lr=1.00e-03
+Époque 002/30 | train=0.078829 | val=0.072823 | lr=1.00e-03
+Époque 003/30 | train=0.077098 | val=0.069786 | lr=1.00e-03
+Époque 004/30 | train=0.075997 | val=0.071112 | lr=1.00e-03
+Époque 005/30 | train=0.075092 | val=0.069826 | lr=1.00e-03
+Époque 006/30 | train=0.074465 | val=0.071508 | lr=1.00e-03
+Époque 007/30 | train=0.073918 | val=0.069508 | lr=1.00e-03
+Époque 008/30 | train=0.073346 | val=0.069998 | lr=1.00e-03
+Époque 009/30 | train=0.073046 | val=0.068094 | lr=1.00e-03
+Époque 010/30 | train=0.072885 | val=0.068085 | lr=1.00e-03
+Époque 011/30 | train=0.072672 | val=0.070227 | lr=1.00e-03
+Époque 012/30 | train=0.071525 | val=0.068427 | lr=1.00e-03
+Époque 013/30 | train=0.071523 | val=0.066851 | lr=1.00e-03
+Époque 014/30 | train=0.071957 | val=0.069003 | lr=1.00e-03
+Époque 015/30 | train=0.070585 | val=0.069535 | lr=1.00e-03
+Époque 016/30 | train=0.070668 | val=0.067806 | lr=1.00e-03
+Époque 017/30 | train=0.070320 | val=0.069467 | lr=5.00e-04
+Époque 018/30 | train=0.068950 | val=0.068802 | lr=5.00e-04
+Époque 019/30 | train=0.068118 | val=0.068489 | lr=5.00e-04
+Époque 020/30 | train=0.067706 | val=0.068831 | lr=5.00e-04
+Époque 021/30 | train=0.067323 | val=0.069034 | lr=2.50e-04
+
+Arrêt anticipé.
+
+================================================================================
+RÉSULTATS CONVLSTM 5×5 MASQUÉ
+================================================================================
+Meilleure époque : 13
+Durée             : 420.0s
+
+Persistance :
+MAE  : 1.6482 °C
+RMSE : 2.1406 °C
+
+ConvLSTM 5×5 masqué :
+MAE  : 1.4227 °C
+RMSE : 1.8340 °C
+Biais: -0.0814 °C
+R²   : 0.9302
+
+Amélioration :
+MAE  : 13.69 %
+RMSE : 14.32 %
+
+Fichiers créés :
+- Modèle    : /home/lab-c0de80861d/climate_project/ndambo/outputs/models/convlstm_all_points_masked_5x5_best.pt
+- Métriques : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/convlstm_all_points_masked_5x5_metrics.json
+- Historique: /home/lab-c0de80861d/climate_project/ndambo/outputs/logs/convlstm_all_points_masked_5x5_history.csv

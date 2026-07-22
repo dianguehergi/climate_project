@@ -14,6 +14,10 @@ ndambo/data/processed/*.npz
 ndambo/data/processed/*.csv
 results_sarima/all_grid_points/monthly_grid_temperature.csv
 
+# Prévisions ConvLSTM complètes trop volumineuses pour GitHub (> 100 Mo)
+ndambo/outputs/predictions/forecast_2000_2025_all_points.csv.gz
+ndambo/outputs/predictions/forecast_2000_2025_autoregressive_masked_5x5.npy
+
 # Pilotes et binaires NVIDIA locaux
 ndambo/vendor/
 

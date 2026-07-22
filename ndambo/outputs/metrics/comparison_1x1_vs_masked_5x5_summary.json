@@ -1,0 +1,16 @@
+{
+    "number_of_points": 9892,
+    "MAE_1x1_mean": 1.4317281306802239,
+    "MAE_5x5_mean": 1.4221074698193115,
+    "RMSE_1x1_mean": 1.8438492936978106,
+    "RMSE_5x5_mean": 1.8240861603040042,
+    "points_where_5x5_better_MAE": 6902,
+    "points_where_1x1_better_MAE": 2990,
+    "points_where_5x5_better_RMSE": 7814,
+    "points_where_1x1_better_RMSE": 2078,
+    "not_improved_1x1": 15,
+    "not_improved_5x5": 56,
+    "old_15_corrected_by_5x5": 3,
+    "old_15_still_not_improved": 12,
+    "new_points_not_improved_only_in_5x5": 44
+}

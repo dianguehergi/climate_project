@@ -1,0 +1,41 @@
+================================================================================
+ANALYSE DES VOISINS 5×5
+================================================================================
+{
+    "number_of_points": 9892,
+    "complete_5x5_points": 8415,
+    "incomplete_5x5_points": 1477,
+    "min_existing_cells": 1,
+    "max_existing_cells": 25,
+    "mean_existing_cells": 24.077031945006066
+}
+
+Distribution du nombre de cellules présentes dans le patch 5×5 :
+existing_cells_5x5
+1        1
+3        1
+5        2
+6        5
+7        6
+8        5
+9       12
+10      14
+11      30
+12      35
+13      67
+14      83
+15     101
+16      81
+17      82
+18     110
+19     103
+20     125
+21     104
+22     138
+23     152
+24     220
+25    8415
+
+Fichiers créés :
+- Détail : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/grid_neighbors_5x5_analysis.csv
+- Résumé : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/grid_neighbors_5x5_summary.json

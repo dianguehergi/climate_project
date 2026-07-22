@@ -1,0 +1,82 @@
+================================================================================
+ÉVALUATION POINT PAR POINT — CONVLSTM 5×5 MASQUÉ
+================================================================================
+Données : (14610, 9892, 5)
+Centres : (9892, 2)
+Canaux  : ['T', 'TINF_H', 'TSUP_H', 'DOY_SIN', 'DOY_COS']
+Checkpoint époque : 13
+Séquences test par point : 2,162
+Total évalué : 21,386,504
+Points évalués : 250/9,892 | durée=15.0s
+Points évalués : 500/9,892 | durée=29.9s
+Points évalués : 750/9,892 | durée=44.7s
+Points évalués : 1,000/9,892 | durée=59.5s
+Points évalués : 1,250/9,892 | durée=74.4s
+Points évalués : 1,500/9,892 | durée=89.2s
+Points évalués : 1,750/9,892 | durée=104.0s
+Points évalués : 2,000/9,892 | durée=118.8s
+Points évalués : 2,250/9,892 | durée=133.6s
+Points évalués : 2,500/9,892 | durée=148.5s
+Points évalués : 2,750/9,892 | durée=163.3s
+Points évalués : 3,000/9,892 | durée=178.1s
+Points évalués : 3,250/9,892 | durée=193.0s
+Points évalués : 3,500/9,892 | durée=207.8s
+Points évalués : 3,750/9,892 | durée=222.6s
+Points évalués : 4,000/9,892 | durée=237.4s
+Points évalués : 4,250/9,892 | durée=252.2s
+Points évalués : 4,500/9,892 | durée=267.0s
+Points évalués : 4,750/9,892 | durée=281.8s
+Points évalués : 5,000/9,892 | durée=296.6s
+Points évalués : 5,250/9,892 | durée=311.4s
+Points évalués : 5,500/9,892 | durée=326.3s
+Points évalués : 5,750/9,892 | durée=341.2s
+Points évalués : 6,000/9,892 | durée=356.0s
+Points évalués : 6,250/9,892 | durée=370.8s
+Points évalués : 6,500/9,892 | durée=385.6s
+Points évalués : 6,750/9,892 | durée=400.5s
+Points évalués : 7,000/9,892 | durée=415.3s
+Points évalués : 7,250/9,892 | durée=430.1s
+Points évalués : 7,500/9,892 | durée=445.0s
+Points évalués : 7,750/9,892 | durée=459.8s
+Points évalués : 8,000/9,892 | durée=474.6s
+Points évalués : 8,250/9,892 | durée=489.5s
+Points évalués : 8,500/9,892 | durée=504.4s
+Points évalués : 8,750/9,892 | durée=519.2s
+Points évalués : 9,000/9,892 | durée=534.1s
+Points évalués : 9,250/9,892 | durée=548.9s
+Points évalués : 9,500/9,892 | durée=563.8s
+Points évalués : 9,750/9,892 | durée=578.7s
+
+================================================================================
+RÉSUMÉ ÉVALUATION 5×5 MASQUÉ
+================================================================================
+{
+    "number_of_points": 9892,
+    "test_sequences_per_point": 2162,
+    "total_test_sequences": 21386504,
+    "complete_5x5_points": 8415,
+    "incomplete_5x5_points": 1477,
+    "global_persistence_metrics": {
+        "MAE_C": 1.6453757300946,
+        "RMSE_C": 2.1364296137518055,
+        "BIAS_C": -0.00028417919085563665,
+        "R2": 0.9051027849768989
+    },
+    "global_convlstm_metrics": {
+        "MAE_C": 1.4221074698193112,
+        "RMSE_C": 1.8326076279525734,
+        "BIAS_C": -0.07846554819282292,
+        "R2": 0.930174304754963
+    },
+    "global_MAE_improvement_percent": 13.56943925886472,
+    "global_RMSE_improvement_percent": 14.221015466345614,
+    "MAE_mean_by_point": 1.4221074698193115,
+    "RMSE_mean_by_point": 1.8240861603040042,
+    "R2_mean_by_point": 0.917148986013134,
+    "points_with_positive_MAE_improvement": 9836,
+    "points_with_negative_MAE_improvement": 56
+}
+
+Fichiers créés :
+- Détail : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/convlstm_all_points_masked_5x5_by_point_metrics.csv
+- Résumé : /home/lab-c0de80861d/climate_project/ndambo/outputs/metrics/convlstm_all_points_masked_5x5_by_point_summary.json
