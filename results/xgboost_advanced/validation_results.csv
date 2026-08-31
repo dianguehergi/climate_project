@@ -1,0 +1,2 @@
+validation_start_year,validation_end_year,best_n_estimators,MAE,RMSE,R2,Bias
+1990,1999,127,1.443501823369805,1.7890184439714172,0.9182353623678331,-0.06889662933983891

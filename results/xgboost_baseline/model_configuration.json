@@ -1,0 +1,44 @@
+{
+    "model": "XGBRegressor",
+    "target": "T",
+    "features": [
+        "LAMBX",
+        "LAMBY",
+        "month_sin",
+        "month_cos",
+        "T_lag_1",
+        "T_lag_2",
+        "T_lag_12",
+        "T_roll_3",
+        "T_roll_12",
+        "T_change_lag_1"
+    ],
+    "model_parameters": {
+        "objective": "reg:squarederror",
+        "n_estimators": 400,
+        "max_depth": 8,
+        "learning_rate": 0.05,
+        "tree_method": "hist",
+        "random_state": 42,
+        "n_jobs": -1
+    },
+    "train": {
+        "n_rows": 4629456,
+        "start_date": "1961-01-01",
+        "end_date": "1999-12-01",
+        "n_grid_points": 9892
+    },
+    "test": {
+        "n_rows": 3086304,
+        "start_date": "2000-01-01",
+        "end_date": "2025-12-01",
+        "n_grid_points": 9892
+    },
+    "test_metrics": {
+        "MAE": 1.4226543846582962,
+        "RMSE": 1.799813102950451,
+        "R2": 0.9200597394229058,
+        "Bias": 0.17141760927007044
+    },
+    "methodological_note": "Evaluation one-step-ahead. Les variables de lag du jeu de test utilisent les températures observées des mois précédents. Il ne s'agit donc pas d'une prévision récursive complète sur 2000-2025."
+}

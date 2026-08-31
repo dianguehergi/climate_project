@@ -1,28 +1,97 @@
-# Environnements et caches Python
+# ==============================================================================
+# ENVIRONNEMENTS ET CACHES PYTHON
+# ==============================================================================
+
 .venv/
 venv/
+env/
+ENV/
+
 **/__pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# Données SAFRAN/SIM volumineuses et fichiers générés
+# ==============================================================================
+# DONNÉES SAFRAN / SIM
+# ==============================================================================
+
 data/raw/
 data/interim/
+
+# Jeux de données volumineux générés
+data/merged/
+data/model/
+data/processed/datasets/
+
+# Profiling généré
+data/processed/profiling/
+
+# Fichiers CSV volumineux directement sous processed
 data/processed/*.csv
-Yann/data/
-ndambo/data/processed/*.npz
-ndambo/data/processed/*.csv
-results_sarima/all_grid_points/monthly_grid_temperature.csv
 
-# Prévisions ConvLSTM complètes trop volumineuses pour GitHub (> 100 Mo)
-ndambo/outputs/predictions/forecast_2000_2025_all_points.csv.gz
-ndambo/outputs/predictions/forecast_2000_2025_autoregressive_masked_5x5.npy
+# ==============================================================================
+# ARCHIVES
+# ==============================================================================
 
-# Pilotes et binaires NVIDIA locaux
-ndambo/vendor/
+# Ignorer les données, sorties, modèles et binaires archivés
+archive_old/**/data/
+archive_old/**/outputs/
+archive_old/**/models/
+archive_old/**/vendor/
 
-# Fichiers temporaires
+# Garder les scripts Yann nécessaires au pipeline
+!archive_old/Yann/
+!archive_old/Yann/scripts/
+!archive_old/Yann/scripts/**
+
+# ==============================================================================
+# MODÈLES ET SORTIES GÉNÉRÉES
+# ==============================================================================
+
+models/
+outputs/
+
+# ==============================================================================
+# GROS FICHIERS DE PRÉDICTION / DONNÉES
+# ==============================================================================
+
+*.npz
+*.npy
+*.giga.gz
+
+# Éviter les gros fichiers de prédictions
+**/predictions_full.parquet
+**/*predictions*.csv.gz
+
+# ==============================================================================
+# ANCIENS RÉSULTATS SARIMA / SARIMAX
+# ==============================================================================
+
+results_sarima/
+
+# ==============================================================================
+# BINAIRES NVIDIA / INSTALLATEURS
+# ==============================================================================
+
+**/vendor/
+*.run
+*.so
+*.so.*
+
+# ==============================================================================
+# FICHIERS TEMPORAIRES
+# ==============================================================================
+
 *.tmp
+*.temp
 *.log
 .DS_Store
+Thumbs.db
+# Caches Python dans les archives
+archive_old/**/__pycache__/
+archive_old/**/*.pyc
 
+# Comparaisons prédiction par prédiction trop volumineuses
+results/model_comparison/tables/prediction_level_comparison.parquet

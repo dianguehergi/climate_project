@@ -1,0 +1,249 @@
+{
+    "project": {
+        "name": "Monthly temperature prediction with XGBoost",
+        "test_period": "2000-2025",
+        "n_test_predictions": 3086304,
+        "n_grid_points": 9892,
+        "months_per_gridpoint": 312
+    },
+    "results": {
+        "baseline": {
+            "MAE": 1.4226543846582962,
+            "RMSE": 1.799813102950451,
+            "R2": 0.9200597394229058,
+            "Bias": 0.1714176092700704
+        },
+        "advanced": {
+            "MAE": 1.3766443463880491,
+            "RMSE": 1.719502993993558,
+            "R2": 0.927034659445282,
+            "Bias": 0.1368075002621051,
+            "n_features": 31,
+            "best_n_estimators": 127
+        },
+        "improvements": {
+            "MAE_absolute": 0.046010038270247,
+            "MAE_percent": 3.234098089206544,
+            "RMSE_absolute": 0.0803101089568929,
+            "RMSE_percent": 4.462136030971205,
+            "R2_absolute": 0.0069749200223762,
+            "Bias_absolute": 0.0346101090079653,
+            "Bias_percent": 20.190521356202503
+        },
+        "validation": {
+            "start_year": 1990.0,
+            "end_year": 1999.0,
+            "MAE": 1.443501823369805,
+            "RMSE": 1.7890184439714172,
+            "R2": 0.9182353623678332,
+            "Bias": -0.0688966293398389
+        },
+        "prediction_level": {
+            "n_predictions": 3086304,
+            "advanced_better_count": 1580823,
+            "advanced_better_percent": 51.22058617686398,
+            "baseline_better_count": 1505480,
+            "baseline_better_percent": 48.779381421920846,
+            "same_error_count": 47,
+            "mean_absolute_error_gain": 0.0460100382702468
+        },
+        "temporal": {
+            "n_years": 26,
+            "advanced_better_years": 17,
+            "advanced_better_percent": 65.38461538461539,
+            "best_year": 2025,
+            "best_year_mae_gain": 0.259231685738829,
+            "worst_year": 2013,
+            "worst_year_mae_gain": -0.3212484359267977
+        },
+        "spatial": {
+            "n_grid_points": 9892,
+            "advanced_better_points": 7366,
+            "advanced_better_percent": 74.46421350586333,
+            "mean_MAE_gain": 0.04601003827024688,
+            "median_MAE_gain": 0.0495656088376658,
+            "best_point": {
+                "LAMBX": 10040,
+                "LAMBY": 21770,
+                "MAE_gain": 0.2107176247160305
+            },
+            "worst_point": {
+                "LAMBX": 10280,
+                "LAMBY": 21210,
+                "MAE_gain": -0.2778202911970233
+            }
+        }
+    },
+    "top_advanced_features": [
+        {
+            "rank": 1,
+            "feature": "T_lag_12",
+            "importance": 0.67583305
+        },
+        {
+            "rank": 2,
+            "feature": "T_lag_24",
+            "importance": 0.21041064
+        },
+        {
+            "rank": 3,
+            "feature": "T_roll_12",
+            "importance": 0.012442722
+        },
+        {
+            "rank": 4,
+            "feature": "T_roll_36",
+            "importance": 0.011703338
+        },
+        {
+            "rank": 5,
+            "feature": "EVAP_lag_12",
+            "importance": 0.008406671
+        },
+        {
+            "rank": 6,
+            "feature": "ETP_lag_1",
+            "importance": 0.008178019
+        },
+        {
+            "rank": 7,
+            "feature": "EVAP_lag_1",
+            "importance": 0.0060245832
+        },
+        {
+            "rank": 8,
+            "feature": "month_cos",
+            "importance": 0.0056060976
+        },
+        {
+            "rank": 9,
+            "feature": "T_roll_3",
+            "importance": 0.004571457
+        },
+        {
+            "rank": 10,
+            "feature": "T_roll_24",
+            "importance": 0.004386435
+        }
+    ],
+    "figures": {
+        "baseline": [
+            "Figure_03_residuals_vs_predictions.png",
+            "Figure_04_feature_importance.png",
+            "Figure_05_yearly_mae.png",
+            "Figure_06_yearly_r2.png",
+            "Figure_07_absolute_error_distribution.png",
+            "Figure_08_temperature_observed_map.png",
+            "Figure_09_temperature_predicted_map.png",
+            "Figure_10_mae_map.png",
+            "Figure_11_rmse_map.png",
+            "Figure_12_bias_map.png",
+            "Figure_13_r2_map.png",
+            "Figure_14_temperature_difference_map.png",
+            "observed_vs_predicted.png",
+            "residual_histogram.png"
+        ],
+        "comparison": [
+            "Figure_01_global_error_comparison.png",
+            "Figure_02_global_r2_comparison.png",
+            "Figure_03_yearly_mae_comparison.png",
+            "Figure_04_yearly_mae_gain.png",
+            "Figure_05_yearly_r2_comparison.png",
+            "Figure_06_prediction_error_gain_distribution.png",
+            "Figure_07_absolute_error_scatter.png",
+            "Figure_08_spatial_mae_gain.png",
+            "Figure_09_spatial_rmse_gain.png",
+            "Figure_10_spatial_r2_gain.png",
+            "Figure_11_spatial_bias_gain.png",
+            "Figure_12_advanced_feature_importance.png"
+        ]
+    },
+    "project_outputs": {
+        "baseline": [
+            "results/xgboost_baseline/feature_importance.csv",
+            "results/xgboost_baseline/figures/Figure_03_residuals_vs_predictions.pdf",
+            "results/xgboost_baseline/figures/Figure_03_residuals_vs_predictions.png",
+            "results/xgboost_baseline/figures/Figure_04_feature_importance.pdf",
+            "results/xgboost_baseline/figures/Figure_04_feature_importance.png",
+            "results/xgboost_baseline/figures/Figure_05_yearly_mae.pdf",
+            "results/xgboost_baseline/figures/Figure_05_yearly_mae.png",
+            "results/xgboost_baseline/figures/Figure_06_yearly_r2.pdf",
+            "results/xgboost_baseline/figures/Figure_06_yearly_r2.png",
+            "results/xgboost_baseline/figures/Figure_07_absolute_error_distribution.pdf",
+            "results/xgboost_baseline/figures/Figure_07_absolute_error_distribution.png",
+            "results/xgboost_baseline/figures/Figure_08_temperature_observed_map.pdf",
+            "results/xgboost_baseline/figures/Figure_08_temperature_observed_map.png",
+            "results/xgboost_baseline/figures/Figure_09_temperature_predicted_map.pdf",
+            "results/xgboost_baseline/figures/Figure_09_temperature_predicted_map.png",
+            "results/xgboost_baseline/figures/Figure_10_mae_map.pdf",
+            "results/xgboost_baseline/figures/Figure_10_mae_map.png",
+            "results/xgboost_baseline/figures/Figure_11_rmse_map.pdf",
+            "results/xgboost_baseline/figures/Figure_11_rmse_map.png",
+            "results/xgboost_baseline/figures/Figure_12_bias_map.pdf",
+            "results/xgboost_baseline/figures/Figure_12_bias_map.png",
+            "results/xgboost_baseline/figures/Figure_13_r2_map.pdf",
+            "results/xgboost_baseline/figures/Figure_13_r2_map.png",
+            "results/xgboost_baseline/figures/Figure_14_temperature_difference_map.pdf",
+            "results/xgboost_baseline/figures/Figure_14_temperature_difference_map.png",
+            "results/xgboost_baseline/figures/observed_vs_predicted.pdf",
+            "results/xgboost_baseline/figures/observed_vs_predicted.png",
+            "results/xgboost_baseline/figures/residual_histogram.pdf",
+            "results/xgboost_baseline/figures/residual_histogram.png",
+            "results/xgboost_baseline/metrics_by_year.csv",
+            "results/xgboost_baseline/metrics_global.csv",
+            "results/xgboost_baseline/model_configuration.json",
+            "results/xgboost_baseline/predictions_full.parquet",
+            "results/xgboost_baseline/predictions_sample.csv",
+            "results/xgboost_baseline/reports/analysis_results.json",
+            "results/xgboost_baseline/reports/analysis_summary.md",
+            "results/xgboost_baseline/tables/metrics_by_gridpoint.csv",
+            "results/xgboost_baseline/tables/residual_statistics.csv",
+            "results/xgboost_baseline/tables/residual_summary.csv",
+            "results/xgboost_baseline/tables/spatial_summary.csv"
+        ],
+        "advanced": [
+            "results/xgboost_advanced/feature_importance.csv",
+            "results/xgboost_advanced/metrics_by_year.csv",
+            "results/xgboost_advanced/metrics_global.csv",
+            "results/xgboost_advanced/model_configuration.json",
+            "results/xgboost_advanced/predictions_full.parquet",
+            "results/xgboost_advanced/predictions_sample.csv",
+            "results/xgboost_advanced/selected_features.csv",
+            "results/xgboost_advanced/validation_results.csv"
+        ],
+        "comparison": [
+            "results/model_comparison/figures/Figure_01_global_error_comparison.pdf",
+            "results/model_comparison/figures/Figure_01_global_error_comparison.png",
+            "results/model_comparison/figures/Figure_02_global_r2_comparison.pdf",
+            "results/model_comparison/figures/Figure_02_global_r2_comparison.png",
+            "results/model_comparison/figures/Figure_03_yearly_mae_comparison.pdf",
+            "results/model_comparison/figures/Figure_03_yearly_mae_comparison.png",
+            "results/model_comparison/figures/Figure_04_yearly_mae_gain.pdf",
+            "results/model_comparison/figures/Figure_04_yearly_mae_gain.png",
+            "results/model_comparison/figures/Figure_05_yearly_r2_comparison.pdf",
+            "results/model_comparison/figures/Figure_05_yearly_r2_comparison.png",
+            "results/model_comparison/figures/Figure_06_prediction_error_gain_distribution.pdf",
+            "results/model_comparison/figures/Figure_06_prediction_error_gain_distribution.png",
+            "results/model_comparison/figures/Figure_07_absolute_error_scatter.pdf",
+            "results/model_comparison/figures/Figure_07_absolute_error_scatter.png",
+            "results/model_comparison/figures/Figure_08_spatial_mae_gain.pdf",
+            "results/model_comparison/figures/Figure_08_spatial_mae_gain.png",
+            "results/model_comparison/figures/Figure_09_spatial_rmse_gain.pdf",
+            "results/model_comparison/figures/Figure_09_spatial_rmse_gain.png",
+            "results/model_comparison/figures/Figure_10_spatial_r2_gain.pdf",
+            "results/model_comparison/figures/Figure_10_spatial_r2_gain.png",
+            "results/model_comparison/figures/Figure_11_spatial_bias_gain.pdf",
+            "results/model_comparison/figures/Figure_11_spatial_bias_gain.png",
+            "results/model_comparison/figures/Figure_12_advanced_feature_importance.pdf",
+            "results/model_comparison/figures/Figure_12_advanced_feature_importance.png",
+            "results/model_comparison/reports/comparison_results.json",
+            "results/model_comparison/reports/comparison_summary.md",
+            "results/model_comparison/tables/feature_importance_comparison.csv",
+            "results/model_comparison/tables/global_model_comparison.csv",
+            "results/model_comparison/tables/gridpoint_model_comparison.csv",
+            "results/model_comparison/tables/prediction_comparison_summary.csv",
+            "results/model_comparison/tables/prediction_level_comparison.parquet",
+            "results/model_comparison/tables/yearly_model_comparison.csv"
+        ]
+    }
+}

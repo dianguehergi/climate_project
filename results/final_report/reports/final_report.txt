@@ -1,0 +1,275 @@
+Rapport final — Prédiction mensuelle de température par XGBoost
+
+1. Résumé exécutif
+
+Ce projet étudie la prédiction mensuelle de la température sur une grille couvrant la France à partir d'une série climatique SAFRAN–SIM.
+
+Le jeu de test couvre 2000–2025, soit 312 mois, sur 9,892 points de grille, correspondant à 3,086,304 prédictions.
+
+Deux modèles XGBoost ont été comparés :
+
+- une baseline reposant sur les coordonnées, la saisonnalité et l'historique thermique ;
+- un modèle avancé ajoutant une mémoire thermique plus longue et des variables physiques retardées.
+
+Le modèle avancé atteint :
+
+- MAE = 1.3766 °C ;
+- RMSE = 1.7195 °C ;
+- R² = 0.9270 ;
+- Bias = 0.1368 °C.
+
+Par rapport à la baseline, la MAE diminue de 0.0460 °C (3.23 %) et le RMSE de 0.0803 °C (4.46 %).
+
+Spatialement, le modèle avancé améliore la MAE sur 7,366/9,892 points (74.46 %).
+
+---
+
+2. Données et protocole expérimental
+
+La série combine les données SAFRAN historiques et SIM. Les variables temporelles ont été construites par point de grille avant la séparation train/test afin de préserver correctement l'historique disponible lors du passage de 1999 à 2000.
+
+Le test couvre 2000–2025, avec 312 observations mensuelles par point de grille.
+
+Les coordonnées spatiales sont représentées par LAMBX et LAMBY.
+
+Les cartes du pipeline sont interprétées dans cet espace de coordonnées sans supposer un système de projection géographique non documenté.
+
+---
+
+3. Variables explicatives
+
+3.1 Variables baseline
+
+- LAMBX
+- LAMBY
+- month_sin
+- month_cos
+- T_lag_1
+- T_lag_2
+- T_lag_12
+- T_roll_3
+- T_roll_12
+- T_change_lag_1
+
+3.2 Variables avancées
+
+- T_lag_24
+- T_roll_24
+- T_roll_36
+
+Variables physiques utilisées : SWI, ETP, EVAP, PE, PRENEI, DRAINC.
+
+Pour ces variables physiques, seules des informations historiques sont utilisées : retards et moyennes mobiles. Les valeurs contemporaines du mois cible ne sont pas utilisées directement.
+
+---
+
+4. Validation temporelle du modèle avancé
+
+La fenêtre de validation couvre 1990–1999.
+
+| Métrique | Validation |
+|---|---:|
+| MAE | 1.4435 °C |
+| RMSE | 1.7890 °C |
+| R² | 0.9182 |
+| Bias | -0.0689 °C |
+
+Nombre d'arbres retenu après early stopping : 127.
+
+---
+
+5. Performances globales
+
+| Métrique | Baseline | Avancé | Gain |
+|---|---:|---:|---:|
+| MAE | 1.4227 °C | 1.3766 °C | 0.0460 °C (3.23 %) |
+| RMSE | 1.7998 °C | 1.7195 °C | 0.0803 °C (4.46 %) |
+| R² | 0.9201 | 0.9270 | +0.0070 |
+| Bias | 0.1714 °C | 0.1368 °C | 0.0346 °C (20.19 %) |
+
+Le modèle avancé améliore simultanément la MAE, le RMSE, le R² et la valeur absolue du biais.
+
+---
+
+6. Comparaison prédiction par prédiction
+
+- Avancé meilleur : 1,580,823 (51.22 %).
+- Baseline meilleure : 1,505,480 (48.78 %).
+- Gain moyen d'erreur absolue : 0.0460 °C.
+
+Le taux de victoires proche de 50 % indique que le gain global ne vient pas d'une domination sur chaque observation. Le modèle avancé réduit davantage certaines erreurs importantes.
+
+---
+
+7. Analyse temporelle
+
+Le modèle avancé améliore la MAE sur 17/26 années (65.38 %).
+
+Années améliorées : 2002, 2003, 2005, 2006, 2010, 2011, 2012, 2014, 2015, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2025.
+
+Années où la baseline reste meilleure : 2000, 2001, 2004, 2007, 2008, 2009, 2013, 2017, 2024.
+
+Meilleure année pour le modèle avancé : 2025, gain MAE = 0.2592 °C.
+
+Année la moins favorable : 2013, gain MAE = -0.3212 °C.
+
+---
+
+8. Analyse spatiale
+
+Le modèle avancé améliore la MAE sur 7,366/9,892 points (74.46 %).
+
+Gain MAE moyen : 0.0460 °C.
+Gain MAE médian : 0.0496 °C.
+
+| Quantile | Gain MAE |
+|---|---:|
+| 10 % | -0.0307 °C |
+| 25 % | -0.0008 °C |
+| 50 % | 0.0496 °C |
+| 75 % | 0.0933 °C |
+| 90 % | 0.1226 °C |
+
+Point avec la plus forte amélioration : LAMBX=10040, LAMBY=21770, gain MAE = 0.2107 °C.
+
+Point le moins favorable : LAMBX=10280, LAMBY=21210, gain MAE = -0.2778 °C.
+
+---
+
+9. Importance des variables
+
+Le modèle avancé utilise 31 variables explicatives.
+
+Top 10 des variables du modèle avancé :
+
+1. T_lag_12 : 0.675833
+2. T_lag_24 : 0.210411
+3. T_roll_12 : 0.012443
+4. T_roll_36 : 0.011703
+5. EVAP_lag_12 : 0.008407
+6. ETP_lag_1 : 0.008178
+7. EVAP_lag_1 : 0.006025
+8. month_cos : 0.005606
+9. T_roll_3 : 0.004571
+10. T_roll_24 : 0.004386
+
+La forte importance des retards thermiques, notamment T_lag_12 et T_lag_24, confirme le rôle majeur de la persistance saisonnière et interannuelle.
+
+Les variables physiques apportent une information complémentaire mais restent individuellement moins dominantes.
+
+Ces importances décrivent l'utilisation interne des variables par XGBoost et ne doivent pas être interprétées comme des relations causales.
+
+---
+
+10. Interprétation scientifique
+
+Les résultats mettent en évidence une forte mémoire thermique annuelle et bisannuelle.
+
+L'ajout de variables physiques historiques améliore les performances sans remplacer le rôle dominant de l'historique de température.
+
+La réduction globale de MAE de 3.23 % reste modérée, mais elle est cohérente avec la baisse du RMSE, l'augmentation du R², la réduction du biais absolu et l'amélioration observée sur la majorité des points de grille.
+
+---
+
+11. Limites méthodologiques
+
+11.1 Évaluation one-step-ahead
+
+Les variables retardées du test utilisent les observations des mois précédents. L'évaluation correspond donc à une prédiction mensuelle one-step-ahead, et non à une prévision récursive autonome sur l'ensemble de la période 2000–2025.
+
+11.2 Dépendance aux observations historiques
+
+Un usage opérationnel réellement récursif nécessiterait de remplacer progressivement certaines observations retardées par les prédictions du modèle.
+
+11.3 Importance des variables
+
+Les importances XGBoost n'indiquent ni causalité ni signe d'effet. Une analyse SHAP pourrait compléter l'interprétation.
+
+11.4 Validation
+
+Le modèle avancé utilise une fenêtre temporelle dédiée à l'early stopping. Une validation temporelle multi-fenêtres permettrait de tester davantage la robustesse.
+
+11.5 Cartographie
+
+Les cartes utilisent LAMBX et LAMBY. Une cartographie dans un référentiel géographique standard nécessiterait d'identifier et de documenter explicitement le système de coordonnées.
+
+---
+
+12. Pistes d'amélioration
+
+- validation temporelle multi-fenêtres
+- optimisation contrôlée des hyperparamètres
+- analyse SHAP
+- analyse des performances par mois de l'année
+- analyse des événements extrêmes
+- analyse régionale
+- variables de climatologie locale et d'anomalie
+- prévision récursive
+- comparaison avec LightGBM ou CatBoost
+- conversion cartographique documentée
+
+---
+
+13. Conclusion
+
+La baseline atteint une MAE de 1.4227 °C, un RMSE de 1.7998 °C et un R² de 0.9201.
+
+Le modèle avancé atteint une MAE de 1.3766 °C, un RMSE de 1.7195 °C et un R² de 0.9270.
+
+Il réduit la MAE de 3.23 % et le RMSE de 4.46 %, tout en améliorant la MAE sur 74.46 % des points de grille.
+
+À ce stade du pipeline, le modèle avancé constitue le meilleur modèle testé.
+
+---
+
+14. Figures disponibles
+
+Analyse baseline
+
+- Figure_03_residuals_vs_predictions.png
+- Figure_04_feature_importance.png
+- Figure_05_yearly_mae.png
+- Figure_06_yearly_r2.png
+- Figure_07_absolute_error_distribution.png
+- Figure_08_temperature_observed_map.png
+- Figure_09_temperature_predicted_map.png
+- Figure_10_mae_map.png
+- Figure_11_rmse_map.png
+- Figure_12_bias_map.png
+- Figure_13_r2_map.png
+- Figure_14_temperature_difference_map.png
+- observed_vs_predicted.png
+- residual_histogram.png
+
+Comparaison des modèles
+
+- Figure_01_global_error_comparison.png
+- Figure_02_global_r2_comparison.png
+- Figure_03_yearly_mae_comparison.png
+- Figure_04_yearly_mae_gain.png
+- Figure_05_yearly_r2_comparison.png
+- Figure_06_prediction_error_gain_distribution.png
+- Figure_07_absolute_error_scatter.png
+- Figure_08_spatial_mae_gain.png
+- Figure_09_spatial_rmse_gain.png
+- Figure_10_spatial_r2_gain.png
+- Figure_11_spatial_bias_gain.png
+- Figure_12_advanced_feature_importance.png
+
+---
+
+15. Reproductibilité
+
+Ordre d'exécution :
+
+text
+01_prepare_full_timeseries.py
+02_build_training_dataset.py
+03_train_xgboost.py
+04_analyse_baseline.py
+05_train_xgboost_advanced.py
+06_compare_models.py
+07_generate_final_report.py
+
+
+Les métriques, prédictions et analyses intermédiaires sont sauvegardées afin de permettre la reproduction des étapes d'analyse sans réentraîner les modèles.

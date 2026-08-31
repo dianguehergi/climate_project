@@ -1,0 +1,11 @@
+feature,importance
+T_lag_12,0.8341546
+month_cos,0.05318229
+T_roll_12,0.037759956
+month_sin,0.020929717
+T_lag_1,0.015868347
+T_roll_3,0.013144958
+LAMBX,0.007852496
+T_lag_2,0.0066730827
+T_change_lag_1,0.005557759
+LAMBY,0.0048767957

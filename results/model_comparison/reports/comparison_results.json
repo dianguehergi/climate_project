@@ -1,0 +1,101 @@
+{
+    "global_comparison": {
+        "MAE": {
+            "baseline": 1.4226543846582962,
+            "advanced": 1.3766443463880491,
+            "improvement_absolute": 0.04601003827024708,
+            "improvement_percent": 3.234098089206544
+        },
+        "RMSE": {
+            "baseline": 1.799813102950451,
+            "advanced": 1.719502993993558,
+            "improvement_absolute": 0.08031010895689294,
+            "improvement_percent": 4.462136030971205
+        },
+        "R2": {
+            "baseline": 0.9200597394229058,
+            "advanced": 0.927034659445282,
+            "improvement_absolute": 0.0069749200223762076,
+            "improvement_percent": 0.7580942544829888
+        },
+        "Bias": {
+            "baseline": 0.1714176092700704,
+            "advanced": 0.1368075002621051,
+            "improvement_absolute": 0.03461010900796532,
+            "improvement_percent": 20.190521356202503
+        }
+    },
+    "temporal_comparison": {
+        "n_years": 26,
+        "advanced_better_mae_years": 17,
+        "advanced_better_mae_percent": 65.38461538461539
+    },
+    "prediction_level_comparison": {
+        "n_predictions": 3086304,
+        "advanced_better_count": 1580823,
+        "advanced_better_percent": 51.22058617686398,
+        "baseline_better_count": 1505480,
+        "baseline_better_percent": 48.779381421920846,
+        "mean_absolute_error_gain": 0.04601003827024689
+    },
+    "spatial_comparison": {
+        "n_grid_points": 9892,
+        "advanced_better_mae_points": 7366,
+        "advanced_better_mae_percent": 74.46421350586331,
+        "mean_mae_gain": 0.0460100382702469,
+        "median_mae_gain": 0.04956560883766581,
+        "mean_r2_gain": 0.007741563812687433
+    },
+    "baseline_model": {
+        "n_features": 10,
+        "features": [
+            "LAMBX",
+            "LAMBY",
+            "month_sin",
+            "month_cos",
+            "T_lag_1",
+            "T_lag_2",
+            "T_lag_12",
+            "T_roll_3",
+            "T_roll_12",
+            "T_change_lag_1"
+        ]
+    },
+    "advanced_model": {
+        "n_features": 31,
+        "features": [
+            "LAMBX",
+            "LAMBY",
+            "month_sin",
+            "month_cos",
+            "T_lag_1",
+            "T_lag_2",
+            "T_lag_12",
+            "T_roll_3",
+            "T_roll_12",
+            "T_change_lag_1",
+            "T_lag_24",
+            "T_roll_24",
+            "T_roll_36",
+            "SWI_lag_1",
+            "SWI_lag_12",
+            "SWI_roll_3",
+            "ETP_lag_1",
+            "ETP_lag_12",
+            "ETP_roll_3",
+            "EVAP_lag_1",
+            "EVAP_lag_12",
+            "EVAP_roll_3",
+            "PE_lag_1",
+            "PE_lag_12",
+            "PE_roll_3",
+            "PRENEI_lag_1",
+            "PRENEI_lag_12",
+            "PRENEI_roll_3",
+            "DRAINC_lag_1",
+            "DRAINC_lag_12",
+            "DRAINC_roll_3"
+        ],
+        "best_n_estimators": 127
+    }
+}
