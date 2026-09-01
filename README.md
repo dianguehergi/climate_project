@@ -6,7 +6,7 @@ ConvLSTM, Ridge et XGBoost.
 
 ## Travail SARIMA / SARIMAX
 
-Les scripts principaux sont organisés dans `hergi/scripts/` :
+Les scripts principaux sont organisés dans `archive_old/sarima_sarimax/scripts/` :
 
 - `arima_sarima/` : entraînement et évaluation ARIMA/SARIMA ;
 - `sarimax/` : modèles SARIMAX et variables exogènes ETP/SWI ;
@@ -34,11 +34,11 @@ SARIMAX réduit la RMSE de 11,5 % et gagne sur 95,8 % des points.
 ```text
 climate_project/
 ├── data/                 # structure locale des données, fichiers lourds ignorés
-├── hergi/                # ARIMA, SARIMA et SARIMAX
-├── ndambo/               # TCN et ConvLSTM
-├── Yann/                 # Ridge et XGBoost
-├── teste/                # préparation, analyses et tests
-└── results_sarima/       # métriques, paramètres compacts, rapports et figures
+├── archive_old/sarima_sarimax/                # ARIMA, SARIMA et SARIMAX
+├── archive_old/tcn_convlstm/               # TCN et ConvLSTM
+├── archive_old/xgboost_ridge/                 # Ridge et XGBoost
+├── archive_old/data_preparation_analysis_tests/                # préparation, analyses et tests
+└── archive_old/sarima_sarimax_results/       # métriques, paramètres compacts, rapports et figures
 ```
 
 ## Installation
@@ -65,4 +65,3 @@ la grille SAFRAN.
 
 Les paramètres compacts, métriques, figures et rapports nécessaires à l'analyse
 des expériences sont conservés dans le dépôt.
-

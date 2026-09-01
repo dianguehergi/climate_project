@@ -50,8 +50,8 @@ def main():
 
     out_dir = os.path.expanduser('~/climate_project/results_sarima')
 
-    p_sarima  = os.path.expanduser('~/climate_project/archive_old/sarima_sarimax_results/predictions_2000_2025/sarima_monthly_predictions_2000_2025_adamont.csv.gz')
-    p_sarimax = os.path.expanduser('~/climate_project/archive_old/sarima_sarimax_results/sarimax_predictions_2000_2025/sarimax_monthly_predictions_2000_2025_adamont.csv.gz')
+    p_sarima  = os.path.expanduser('~/climate_project/archive_old/sarima_sarimax_results/predictions_2000_2025/sarima_temperature_monthly_2000_2025_adamont.csv.gz')
+    p_sarimax = os.path.expanduser('~/climate_project/archive_old/sarima_sarimax_results/sarimax_predictions_2000_2025/temperature_prediction_SARIMAX_2000_2025_ADAMONT.csv.gz')
 
     # 1. Traitement SARIMA
     if os.path.exists(p_sarima):

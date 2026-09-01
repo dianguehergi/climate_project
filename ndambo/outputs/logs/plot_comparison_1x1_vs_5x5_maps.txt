@@ -1,3 +1,0 @@
-Figure créée : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/map_delta_mae_5x5_minus_1x1.png
-Figure créée : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/map_delta_rmse_5x5_minus_1x1.png
-Figure créée : /home/lab-c0de80861d/climate_project/ndambo/outputs/figures/map_56_bad_points_5x5.png

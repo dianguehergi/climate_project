@@ -1,8 +1,0 @@
-{
-    "number_of_points": 9892,
-    "complete_5x5_points": 8415,
-    "incomplete_5x5_points": 1477,
-    "min_existing_cells": 1,
-    "max_existing_cells": 25,
-    "mean_existing_cells": 24.077031945006066
-}

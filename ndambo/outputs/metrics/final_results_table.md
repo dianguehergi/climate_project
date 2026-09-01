@@ -1,5 +1,0 @@
-| experiment | model | scale | patch | MAE_C | RMSE_C | BIAS_C | R2 | persistence_MAE_C | persistence_RMSE_C | MAE_gain_vs_persistence_percent | RMSE_gain_vs_persistence_percent | number_of_points | parameters | best_epoch | points_positive_MAE | points_negative_MAE | complete_5x5_points | incomplete_5x5_points |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ConvLSTM 100 centres | ConvLSTM | 100 centres SAFRAN | 5x5 complet | 1.4236 | 1.8316 | -0.0915 | 0.9283 | 1.6418 | 2.1332 | 13.2941 | 14.1373 | 100 | 266305.0000 | 18.0000 |  |  |  |  |
-| ConvLSTM tous points 1x1 | ConvLSTM | 9 892 points SAFRAN | 1x1 | 1.4317 | 1.8514 | -0.0725 | 0.9287 | 1.6454 | 2.1364 | 12.9847 | 13.3392 | 9892 | 266305.0000 | 26.0000 | 9877.0000 | 15.0000 |  |  |
-| ConvLSTM tous points 5x5 masqué | ConvLSTM | 9 892 points SAFRAN | 5x5 masqué | 1.4221 | 1.8326 | -0.0785 | 0.9302 | 1.6454 | 2.1364 | 13.5694 | 14.2210 | 9892 | 267457.0000 | 13.0000 | 9836.0000 | 56.0000 | 8415.0000 | 1477.0000 |

@@ -42,9 +42,9 @@ archive_old/**/models/
 archive_old/**/vendor/
 
 # Garder les scripts Yann nécessaires au pipeline
-!archive_old/Yann/
-!archive_old/Yann/scripts/
-!archive_old/Yann/scripts/**
+!archive_old/xgboost_ridge/
+!archive_old/xgboost_ridge/scripts/
+!archive_old/xgboost_ridge/scripts/**
 
 # ==============================================================================
 # MODÈLES ET SORTIES GÉNÉRÉES
@@ -69,7 +69,7 @@ outputs/
 # ANCIENS RÉSULTATS SARIMA / SARIMAX
 # ==============================================================================
 
-results_sarima/
+archive_old/sarima_sarimax_results/
 
 # ==============================================================================
 # BINAIRES NVIDIA / INSTALLATEURS
