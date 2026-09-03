@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rapport complet SARIMA et SARIMAX — SAFRAN France</title>
+<style>
+@page { size: A4; margin: 17mm 18mm 18mm 18mm; }
+body { font-family: Arial, sans-serif; color:#21313a; line-height:1.38; font-size:10.5pt; }
+h1 { color:#12324a; font-size:24pt; margin:0 0 12pt; }
+h2 { color:#176f98; font-size:16pt; margin:18pt 0 8pt; border-bottom:1px solid #8fc5d6; padding-bottom:4pt; }
+h3 { color:#176f98; font-size:12pt; margin:13pt 0 5pt; }
+p { margin:5pt 0 8pt; text-align:justify; }
+li { margin-bottom:4pt; }
+table { border-collapse:collapse; width:100%; margin:8pt 0 12pt; font-size:9pt; }
+th { background:#12324a; color:white; padding:6pt; }
+td { border:1px solid #c8d8de; padding:5pt; vertical-align:top; }
+tr:nth-child(even) td { background:#f3f7f8; }
+.cover { page-break-after:always; padding-top:42mm; }
+.cover .band { background:#12324a; color:white; margin:-42mm -18mm 25mm; padding:35mm 18mm 25mm; }
+.cover h1 { color:white; font-size:31pt; }
+.subtitle { font-size:15pt; color:#dcebf0; }
+.authors { margin-top:25mm; font-size:12pt; line-height:1.6; }
+.break { page-break-before:auto; page-break-after:avoid; }
+.box { background:#eef5f7; border-left:5px solid #1976a3; padding:9pt 12pt; margin:10pt 0; }
+.warning { background:#fff0ed; border-left:5px solid #c84b4b; padding:9pt 12pt; margin:10pt 0; }
+.good { background:#edf8f3; border-left:5px solid #2a9d78; padding:9pt 12pt; margin:10pt 0; }
+.metric { display:inline-block; width:28%; margin:5pt 1%; padding:9pt; background:#eef5f7; border-radius:5pt; text-align:center; }
+.metric strong { display:block; font-size:18pt; color:#176f98; }
+.figure { text-align:center; margin:12pt auto; page-break-inside:avoid; }
+.figure img { max-width:100%; max-height:155mm; }
+.caption { font-size:8pt; color:#62717a; text-align:center; margin-top:4pt; }
+.small { font-size:8.5pt; color:#53636b; }
+.toc td:first-child { width:10%; text-align:center; font-weight:bold; }
+code { background:#eef2f4; padding:1pt 3pt; }
+.equation { text-align:center; font-family:"Liberation Serif",serif; font-size:12pt; margin:10pt; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="band">
+    <div style="color:#48a9c5;font-weight:bold">RESEARCH PROJECT REPORT — VERSION COMPLÈTE</div>
+    <h1>SARIMA et SARIMAX pour la température locale en France</h1>
+    <div class="subtitle">De la préparation SAFRAN aux projections 2000–2025 et au post-traitement inspiré d’ADAMONT</div>
+  </div>
+  <div class="authors"><b>Auteurs</b><br>Hergi DIANGUE · Yann DE-NZOGHE<br>Owen MOUKETOU · Ousmane MOMBO MOMBO<br><br>
+  <b>Encadrement</b><br>Émile EGRETEAU-DRUET<br>AI Clinic — Responsable : Anuradha Kar</div>
+  <p style="margin-top:30mm;color:#62717a">Projet Climate — grille SAFRAN France — 9 892 points<br>Version révisée du 1er septembre 2026</p>
+</section>
+
+<h1>Résumé exécutif</h1>
+<p>Ce rapport documente intégralement les travaux SARIMA et SARIMAX du projet Climate. L’objectif est de modéliser la température mensuelle sur les 9 892 points de la grille SAFRAN, de mesurer la performance hors échantillon, puis de produire des projections sur 2000–2025. La démarche privilégie des modèles statistiques interprétables, reproductibles et suffisamment légers pour être estimés sur toute la France.</p>
+<div class="metric"><strong>1,445 °C</strong>RMSE SARIMA</div>
+<div class="metric"><strong>1,278 °C</strong>RMSE SARIMAX</div>
+<div class="metric"><strong>11,5 %</strong>gain SARIMAX</div>
+<p>Le backtest principal couvre 1996–1999. La comparaison équitable entre SARIMA et SARIMAX utilise le même fichier, les mêmes 9 892 points et un apprentissage 1970–1995. SARIMAX ajoute deux variables exogènes standardisées, l’évapotranspiration potentielle (ETP) et l’indice d’humidité du sol (SWI), et gagne sur 95,8 % des points.</p>
+<div class="warning"><b>Point de méthode essentiel.</b> Le quantile mapping disponible dans les scripts post-hoc utilise les observations réelles 2000–2025 pour calculer les quantiles de référence, puis évalue la correction sur cette même période. Les métriques corrigées décrivent donc un recalage rétrospectif in-sample ; elles ne sont pas une validation indépendante d’ADAMONT. Le présent rapport conserve ces résultats en les qualifiant correctement.</div>
+
+<h2>Sommaire</h2>
+<table class="toc">
+<tr><th>N°</th><th>Partie</th></tr>
+<tr><td>1</td><td>Contexte, problématique et objectifs</td></tr>
+<tr><td>2</td><td>Données SAFRAN, préparation et sélection des variables</td></tr>
+<tr><td>3</td><td>Fondements ARIMA, SARIMA et SARIMAX</td></tr>
+<tr><td>4</td><td>Protocole expérimental et reproductibilité</td></tr>
+<tr><td>5</td><td>Résultats SARIMA sur 9 892 points</td></tr>
+<tr><td>6</td><td>Résultats SARIMAX ETP+SWI et comparaison équitable</td></tr>
+<tr><td>7</td><td>Projections opérationnelles 2000–2025</td></tr>
+<tr><td>8</td><td>Correction de biais inspirée d’ADAMONT</td></tr>
+<tr><td>9</td><td>Interprétation, limites, recommandations et reproduction</td></tr>
+</table>
+
+<h1 class="break">1. Contexte, problématique et objectifs</h1>
+<h2>1.1 Pourquoi modéliser le climat local ?</h2>
+<p>Les décisions d’adaptation nécessitent des informations climatiques à une échelle plus fine que celle des modèles globaux. SAFRAN fournit une représentation spatiale cohérente de la France métropolitaine, sur une grille d’environ 8 km. Le projet se concentre sur la température à 2 mètres, agrégée au pas mensuel, afin de caractériser la saisonnalité locale et la variabilité interannuelle.</p>
+<p>Il faut distinguer trois notions. Une <b>prévision météorologique</b> cherche l’état futur à court terme. Une <b>projection climatique</b> décrit des statistiques futures sous l’effet de forçages ou scénarios. Une <b>extrapolation statistique</b> prolonge la dynamique apprise dans le passé. Les sorties SARIMA/SARIMAX 2000–2025 du projet relèvent principalement de cette troisième catégorie, car elles ne reçoivent ni scénario d’émissions ni champ de circulation futur.</p>
+<h2>1.2 Question scientifique</h2>
+<div class="box">Dans quelle mesure des modèles saisonniers classiques peuvent-ils prédire hors échantillon la température mensuelle sur l’ensemble de la grille SAFRAN, et quel bénéfice apporte l’introduction de variables exogènes physiquement pertinentes ?</div>
+<h2>1.3 Objectifs opérationnels</h2>
+<ul>
+<li>préparer une série mensuelle complète et contrôlée pour chaque point ;</li>
+<li>sélectionner des ordres parcimonieux et interprétables ;</li>
+<li>évaluer SARIMA et SARIMAX sur un futur strictement tenu à l’écart ;</li>
+<li>généraliser l’estimation aux 9 892 points avec reprise après interruption ;</li>
+<li>produire 3 086 304 prédictions par famille pour 2000–2025 ;</li>
+<li>étudier le potentiel et les limites d’une correction de biais de type quantile mapping.</li>
+
+<h1 class="break">2. Données SAFRAN et préparation</h1>
+<h2>2.1 Volumes et structure</h2>
+<table>
+<tr><th>Élément</th><th>Valeur</th><th>Rôle</th></tr>
+<tr><td>Période historique</td><td>1960–1999</td><td>Construction et backtest</td></tr>
+<tr><td>Grille</td><td>9 892 points</td><td>Couverture France métropolitaine</td></tr>
+<tr><td>Données journalières</td><td>144 522 120 lignes</td><td>Source avant agrégation</td></tr>
+<tr><td>Données mensuelles</td><td>4 748 160 lignes</td><td>9 892 × 480 mois</td></tr>
+<tr><td>Projections finales</td><td>3 086 304 lignes/modèle</td><td>9 892 × 312 mois</td></tr>
+</table>
+<p>Les coordonnées <code>LAMBX</code> et <code>LAMBY</code> identifient chaque point. La date mensuelle est normalisée et la température <code>T</code> constitue la cible. Le pipeline vérifie les doublons, la continuité des dates, la présence des variables et la cohérence des types.</p>
+<h2>2.2 Agrégation mensuelle</h2>
+<p>La température mensuelle est obtenue par moyenne des valeurs journalières. Ce choix réduit le bruit météorologique et fait ressortir le cycle annuel, qui constitue la composante dominante du signal. Il rend également possible l’estimation de milliers de modèles statistiques avec un coût raisonnable.</p>
+<h2>2.3 Choix d’ETP et SWI</h2>
+<p>Une analyse combinant corrélations, importance Random Forest et analyse en composantes principales a guidé la sélection des exogènes. ETP représente le bilan énergétique disponible pour l’évapotranspiration ; SWI décrit l’état hydrique du sol et son influence sur la répartition entre chaleur sensible et chaleur latente. Ces variables sont standardisées à partir du seul jeu d’entraînement avant l’ajustement SARIMAX.</p>
+<div class="good"><b>Point fort :</b> les moyennes et écarts-types de standardisation sont calculés sur l’apprentissage, puis réutilisés sur le test. Cela évite une fuite d’information liée à la normalisation.</div>
+
+<h1 class="break">3. Fondements des modèles</h1>
+<h2>3.1 ARIMA</h2>
+<p>ARIMA combine une composante autorégressive AR, une différenciation d’ordre <i>d</i> et une moyenne mobile MA. Dans la notation ARIMA(p,d,q), <i>p</i> indique le nombre de retards autorégressifs et <i>q</i> le nombre de termes d’erreur passés.</p>
+<div class="equation">φ(B)(1−B)<sup>d</sup> y<sub>t</sub> = θ(B) ε<sub>t</sub></div>
+<p>ARIMA(1,0,1) sert de référence non saisonnière. Sur une température mensuelle dominée par un cycle annuel, son erreur est nettement supérieure à celle de SARIMA.</p>
+<h2>3.2 SARIMA</h2>
+<p>SARIMA ajoute une structure saisonnière (P,D,Q,s). Ici, <i>s=12</i> représente le cycle annuel. L’ordre finalement retenu est <b>SARIMA(1,0,2)(0,1,1,12)</b>. Une différenciation saisonnière compare implicitement la température d’un mois à celle du même mois l’année précédente.</p>
+<div class="equation">φ(B) Φ(B<sup>12</sup>)(1−B<sup>12</sup>) y<sub>t</sub> = θ(B) Θ(B<sup>12</sup>) ε<sub>t</sub></div>
+<h2>3.3 SARIMAX</h2>
+<p>SARIMAX ajoute une régression sur des variables exogènes. Le modèle retenu est <b>SARIMAX(0,0,0)(0,1,1,12)</b> avec ETP et SWI standardisés. La structure est volontairement parcimonieuse : la saisonnalité porte la dynamique, tandis que les exogènes expliquent une partie des variations concomitantes.</p>
+<div class="equation">y<sub>t</sub> = β<sub>ETP</sub>x<sub>ETP,t</sub> + β<sub>SWI</sub>x<sub>SWI,t</sub> + composante saisonnière + ε<sub>t</sub></div>
+<h2>3.4 Sélection des ordres</h2>
+<p>Les ordres ont d’abord été étudiés sur un point représentatif, puis testés sur des ensembles plus larges. Le critère principal reste la performance hors échantillon. AIC et BIC servent au diagnostic d’ajustement, mais ne remplacent ni le backtest ni la comparaison à une référence saisonnière naïve.</p>
+
+<h1 class="break">4. Protocole expérimental</h1>
+<h2>4.1 Découpages temporels</h2>
+<table>
+<tr><th>Expérience</th><th>Apprentissage</th><th>Test</th><th>But</th></tr>
+<tr><td>SARIMA complet vs naïf</td><td>1960–1995</td><td>1996–1999</td><td>Évaluer la référence saisonnière</td></tr>
+<tr><td>SARIMA vs SARIMAX équitable</td><td>1970–1995</td><td>1996–1999</td><td>Isoler l’apport ETP/SWI</td></tr>
+<tr><td>SARIMA final</td><td>1960–1999</td><td>—</td><td>Projeter 2000–2025</td></tr>
+<tr><td>SARIMAX final</td><td>1970–1999</td><td>—</td><td>Projeter avec exogènes prévues</td></tr>
+</table>
+<p>La comparaison équitable commence en 1970 car les données nécessaires aux exogènes sont disponibles sur cette fenêtre. Le test comprend 48 mois, de janvier 1996 à décembre 1999.</p>
+<h2>4.2 Référence saisonnière naïve</h2>
+<p>La référence prévoit pour chaque mois la température observée douze mois auparavant. Cette baseline est indispensable : un modèle saisonnier sophistiqué doit apporter une amélioration par rapport à cette règle simple.</p>
+<h2>4.3 Métriques</h2>
+<table>
+<tr><th>Métrique</th><th>Interprétation</th><th>Attention</th></tr>
+<tr><td>MAE</td><td>Erreur absolue typique en °C</td><td>Traite toutes les erreurs linéairement</td></tr>
+<tr><td>RMSE</td><td>Pénalise davantage les grandes erreurs</td><td>Sensible aux extrêmes</td></tr>
+<tr><td>Biais</td><td>Signe de la surestimation/sous-estimation</td><td>Des erreurs opposées peuvent s’annuler</td></tr>
+<tr><td>R²</td><td>Part de variance restituée</td><td>Ne mesure pas seul la calibration</td></tr>
+</table>
+<h2>4.4 Industrialisation</h2>
+<p>Le traitement est parallélisé par point avec limitation des threads BLAS. Les résultats sont écrits au fil de l’eau dans des CSV ; les points déjà terminés sont détectés au redémarrage. Cette conception permet de reprendre un calcul interrompu sans recommencer les milliers de modèles déjà ajustés.</p>
+
+<h1 class="break">5. Résultats SARIMA</h1>
+<div class="metric"><strong>1,445 °C</strong>RMSE moyenne</div>
+<div class="metric"><strong>1,166 °C</strong>MAE moyenne</div>
+<div class="metric"><strong>−0,198 °C</strong>biais moyen</div>
+<table>
+<tr><th>Indicateur</th><th>Valeur</th></tr>
+<tr><td>RMSE médiane</td><td>1,441 °C</td></tr>
+<tr><td>RMSE minimum / maximum</td><td>0,877 / 2,148 °C</td></tr>
+<tr><td>Intervalle central de 90 %</td><td>1,188 à 1,679 °C</td></tr>
+<tr><td>Points avec RMSE ≤ 1,50 °C</td><td>65,4 %</td></tr>
+<tr><td>Points avec |biais| ≤ 0,50 °C</td><td>89,4 %</td></tr>
+<tr><td>Victoire face au naïf</td><td>99,99 % des points</td></tr>
+<tr><td>Gain RMSE médian vs naïf</td><td>30,4 %</td></tr>
+</table>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/all_9892_best_model/figures/01_distributions_erreurs.png"><div class="caption">Figure 1 — Distribution des erreurs SARIMA sur les 9 892 points.</div></div>
+<p>SARIMA fournit une référence mensuelle solide. Le biais moyen négatif indique une légère sous-estimation, mais l’erreur reste homogène sur une grande partie du territoire. Les points les plus difficiles doivent être étudiés en fonction du relief, du climat local et de la représentativité des coordonnées.</p>
+
+<h1 class="break">6. Structure spatiale du SARIMA</h1>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/all_9892_best_model/figures/02_cartes_spatiales.png"><div class="caption">Figure 2 — Cartes spatiales de performance et de biais SARIMA.</div></div>
+<p>La cartographie permet de vérifier que la moyenne nationale ne masque pas des zones systématiquement plus difficiles. Elle aide à identifier les régions où l’amplitude saisonnière, l’altitude ou les régimes locaux entraînent des erreurs plus importantes.</p>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/all_9892_best_model/figures/03_robustesse_et_biais.png"><div class="caption">Figure 3 — Robustesse et distribution du biais SARIMA.</div></div>
+<h2>Diagnostics du point illustratif</h2>
+<p>Sur le point utilisé pour la sélection, le passage d’ARIMA à SARIMA réduit la RMSE hors échantillon d’environ 4,5 °C à environ 1,1 °C. Les tests rapportés donnent Ljung–Box p=0,94, Jarque–Bera p=0,96 et hétéroscédasticité p=0,51. Ces valeurs ne prouvent pas la perfection du modèle, mais ne conduisent pas à rejeter les hypothèses diagnostiques sur ce point.</p>
+
+<h1 class="break">7. Résultats SARIMAX ETP+SWI</h1>
+<div class="metric"><strong>1,278 °C</strong>RMSE moyenne</div>
+<div class="metric"><strong>1,016 °C</strong>MAE moyenne</div>
+<div class="metric"><strong>−0,133 °C</strong>biais moyen</div>
+<table>
+<tr><th>Indicateur</th><th>Valeur</th></tr>
+<tr><td>RMSE médiane</td><td>1,278 °C</td></tr>
+<tr><td>RMSE minimum / maximum</td><td>0,879 / 1,936 °C</td></tr>
+<tr><td>Points avec RMSE ≤ 1,25 °C</td><td>39,1 %</td></tr>
+<tr><td>Points avec RMSE ≤ 1,50 °C</td><td>97,9 %</td></tr>
+<tr><td>Points avec |biais| ≤ 0,50 °C</td><td>89,7 %</td></tr>
+<tr><td>Coefficient ETP positif</td><td>100 % des points</td></tr>
+<tr><td>Coefficient SWI positif</td><td>88,5 % des points</td></tr>
+</table>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/sarimax_all_9892_compact/figures/01_distributions_erreurs.png"><div class="caption">Figure 4 — Distribution des erreurs du SARIMAX ETP+SWI.</div></div>
+<p>ETP est le prédicteur linéaire dominant et son coefficient positif est spatialement stable. Le signe de SWI est plus variable. Ces coefficients facilitent l’interprétation, mais restent des associations conditionnelles au modèle et ne constituent pas une preuve causale.</p>
+
+<h1 class="break">8. Comparaison équitable SARIMA–SARIMAX</h1>
+<table>
+<tr><th>Modèle</th><th>RMSE</th><th>MAE</th><th>Biais</th></tr>
+<tr><td>SARIMA</td><td>1,445 °C</td><td>1,166 °C</td><td>≈ −0,198 °C</td></tr>
+<tr><td>SARIMAX ETP+SWI</td><td><b>1,278 °C</b></td><td><b>1,016 °C</b></td><td>−0,133 °C</td></tr>
+</table>
+<div class="good"><b>Résultat principal :</b> SARIMAX réduit la RMSE de 11,5 % et gagne sur 95,8 % des points. Ce résultat est défendable car les deux modèles utilisent les mêmes points, le même fichier, le même apprentissage 1970–1995 et le même test 1996–1999.</div>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/sarimax_all_9892_compact/figures/05_comparaison_SARIMA_SARIMAX.png"><div class="caption">Figure 5 — Comparaison des erreurs moyennes SARIMA et SARIMAX.</div></div>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/sarimax_all_9892_compact/figures/07_gains_SARIMAX_point_par_point.png"><div class="caption">Figure 6 — Gain SARIMAX point par point.</div></div>
+<p>L’amélioration montre que la saisonnalité seule ne capture pas toute l’information. ETP et SWI expliquent une composante supplémentaire, même après prise en compte du cycle annuel. Le gain doit néanmoins être interprété dans ce protocole précis, sans extrapoler à d’autres régions ou résolutions.</p>
+
+<h1 class="break">9. Cartographie et coefficients SARIMAX</h1>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/sarimax_all_9892_compact/figures/02_cartes_erreurs.png"><div class="caption">Figure 7 — Cartes des erreurs SARIMAX.</div></div>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/sarimax_all_9892_compact/figures/03_cartes_coefficients_ETP_SWI.png"><div class="caption">Figure 8 — Répartition spatiale des coefficients standardisés ETP et SWI.</div></div>
+<p>Les cartes de coefficients montrent comment la relation statistique avec les exogènes varie selon les régions. Un coefficient standardisé permet de comparer l’importance relative au sein d’un point, mais sa valeur dépend de la distribution locale et ne doit pas être lue comme une sensibilité physique universelle.</p>
+
+<h1 class="break">10. Projections 2000–2025</h1>
+<h2>10.1 SARIMA final</h2>
+<p>Le SARIMA est réajusté sur 1960–1999 puis déroule 312 mois. Le fichier contient exactement 3 086 304 lignes, sans cellule manquante. Sur 9 892 ajustements, 9 862 convergent selon le résumé d’exécution. La température moyenne prévue est 10,18 °C ; la différence entre 2000–2004 et 2021–2025 n’est que +0,035 °C, ce qui confirme que le modèle n’invente pas une tendance forte absente de son apprentissage.</p>
+<div class="figure"><img src="../../archive_old/sarima_sarimax_results/predictions_2000_2025/report/02_historique_et_previsions_1960_2025.png"><div class="caption">Figure 9 — Historique et projections SARIMA sur 1960–2025.</div></div>
+<h2>10.2 SARIMAX final</h2>
+<p>SARIMAX exige des valeurs futures d’ETP et SWI. Elles sont produites par des SARIMA auxiliaires entraînés sur 1970–1999, puis injectées dans le modèle de température. Les 9 892 modèles de température convergent ; un modèle ETP et 272 modèles SWI présentent un avertissement de convergence. La chaîne reste complète, mais l’incertitude des exogènes prévues n’est pas entièrement propagée aux intervalles de température.</p>
+<div class="warning"><b>Interprétation :</b> ces sorties sont des extrapolations de la structure historique. Pour parler de véritable projection climatique future, il faut introduire des prédicteurs ou scénarios externes tels que ERA5, EURO-CORDEX ou CMIP.</div>
+
+<h1 class="break">11. Confrontation aux observations 2000–2025</h1>
+<p>Les observations SIM/SAFRAN permettent de mesurer a posteriori l’écart des projections brutes. Elles mettent en évidence un biais froid cohérent avec l’incapacité d’un modèle entraîné jusqu’en 1999 à reproduire spontanément toute l’évolution climatique ultérieure.</p>
+<table>
+<tr><th>Modèle brut</th><th>MAE</th><th>RMSE</th><th>Biais</th><th>R²</th></tr>
+<tr><td>SARIMA</td><td>1,525 °C</td><td>1,922 °C</td><td>−0,831 °C</td><td>0,909</td></tr>
+<tr><td>SARIMAX</td><td>1,484 °C</td><td>1,848 °C</td><td>−0,789 °C</td><td>0,916</td></tr>
+</table>
+<p>SARIMAX reste légèrement meilleur que SARIMA face aux observations récentes. Cependant, ces chiffres ne sont pas directement comparables aux RMSE du backtest 1996–1999 : l’horizon est beaucoup plus long et la période connaît un climat différent de celui de l’apprentissage.</p>
+<h2>Pourquoi le biais froid apparaît-il ?</h2>
+<ul>
+<li>absence de forçage climatique futur explicite ;</li>
+<li>extrapolation d’une climatologie historique ;</li>
+<li>accumulation de l’incertitude à long horizon ;</li>
+<li>pour SARIMAX, dépendance à des exogènes elles-mêmes prévues.</li>
+</ul>
+
+<h1 class="break">12. Post-traitement inspiré d’ADAMONT</h1>
+<h2>12.1 Ce qu’est ADAMONT</h2>
+<p>ADAMONT est une méthode de correction de biais et de descente d’échelle fondée sur un quantile mapping conditionné par des régimes de temps. Une mise en œuvre complète requiert des champs atmosphériques de grande échelle permettant d’identifier ces régimes. Le projet ne dispose ici que des variables de surface SAFRAN ; il met donc en œuvre un quantile mapping simplifié inspiré d’ADAMONT.</p>
+<h2>12.2 Ce que font réellement les scripts</h2>
+<p>Les scripts fusionnent les projections et les observations 2000–2025, regroupent les données par mois, calculent les quantiles de <code>T_PRED</code> et <code>T_REAL</code>, puis interpolent les prédictions sur la distribution observée. Le regroupement ayant produit les métriques est mensuel et global, pas point par point.</p>
+<div class="warning"><b>Fuite d’information :</b> les quantiles observés 2000–2025 servent à ajuster la correction, puis les mêmes observations servent à calculer MAE, RMSE, biais et R². Il s’agit d’un diagnostic de recalage in-sample. Le biais presque nul ne peut pas être présenté comme une performance indépendante.</div>
+<table>
+<tr><th>Modèle</th><th>Étape</th><th>MAE</th><th>RMSE</th><th>Biais</th><th>R²</th></tr>
+<tr><td>SARIMA</td><td>Brut</td><td>1,525</td><td>1,922</td><td>−0,831</td><td>0,909</td></tr>
+<tr><td>SARIMA</td><td>QM post-hoc</td><td>1,375</td><td>1,731</td><td>−0,011</td><td>0,926</td></tr>
+<tr><td>SARIMAX</td><td>Brut</td><td>1,484</td><td>1,848</td><td>−0,789</td><td>0,916</td></tr>
+<tr><td>SARIMAX</td><td>QM post-hoc</td><td>1,372</td><td>1,716</td><td>−0,003</td><td>0,927</td></tr>
+</table>
+<p>Ces valeurs démontrent que le recalage des distributions peut réduire fortement un biais systématique. Elles ne mesurent pas encore sa généralisation.</p>
+
+<h1 class="break">13. Comment valider correctement la correction</h1>
+<h2>13.1 Protocole minimal</h2>
+<ol>
+<li>Choisir une période historique où simulations et observations coexistent.</li>
+<li>Calculer les quantiles par point et par mois uniquement sur la calibration.</li>
+<li>Enregistrer et figer les fonctions de transfert.</li>
+<li>Appliquer ces fonctions à une période temporelle indépendante.</li>
+<li>Comparer avant/après avec MAE, RMSE, biais et R².</li>
+<li>Ajouter un bootstrap temporel ou spatial pour quantifier l’incertitude du gain.</li>
+</ol>
+<h2>13.2 Découpage recommandé</h2>
+<table>
+<tr><th>Bloc</th><th>Période possible</th><th>Usage</th></tr>
+<tr><td>Apprentissage modèles</td><td>1970–1991</td><td>Estimation SARIMA/SARIMAX</td></tr>
+<tr><td>Calibration quantile mapping</td><td>1992–1995</td><td>Estimation des fonctions de correction</td></tr>
+<tr><td>Validation indépendante</td><td>1996–1999</td><td>Mesure du gain corrigé</td></tr>
+</table>
+<p>Une autre possibilité consiste à utiliser une simulation historique de modèle climatique sur 1960–1999 comme source à corriger, SAFRAN comme référence, puis à transférer la fonction vers les projections futures. Pour se rapprocher d’ADAMONT complet, il faut ajouter les régimes de temps issus de champs ERA5 ou d’un modèle climatique.</p>
+
+<h1 class="break">14. Forces, limites et risques</h1>
+<h2>Forces</h2>
+<ul>
+<li>couverture complète des 9 892 points ;</li>
+<li>backtest temporel hors échantillon ;</li>
+<li>comparaison équitable SARIMA/SARIMAX ;</li>
+<li>amélioration spatiale généralisée avec ETP/SWI ;</li>
+<li>modèles interprétables et calcul reprenable ;</li>
+<li>sorties compactes et contrôles de complétude.</li>
+</ul>
+<h2>Limites</h2>
+<ul>
+<li>ordres identiques imposés à tous les points ;</li>
+<li>absence de tendance ou forçage climatique futur explicite ;</li>
+<li>exogènes futures SARIMAX prévues avec leur propre incertitude ;</li>
+<li>intervalles de confiance ne propageant pas toute l’incertitude ;</li>
+<li>correction de biais actuelle non validée indépendamment ;</li>
+<li>évaluation dédiée aux extrêmes encore incomplète.</li>
+</ul>
+<h2>Risques d’interprétation</h2>
+<p>Il ne faut pas assimiler une faible erreur mensuelle à une bonne prévision des extrêmes quotidiens, ni comparer directement les métriques avec celles d’autres études sans protocole commun. Il faut également éviter de présenter le biais post-hoc presque nul comme une capacité de projection du réchauffement.</p>
+
+<h1 class="break">15. Reproductibilité</h1>
+<h2>Scripts centraux</h2>
+<table>
+<tr><th>Étape</th><th>Script</th></tr>
+<tr><td>SARIMA grille complète</td><td><code>sarima_all_9892.py</code></td></tr>
+<tr><td>Comparaison SARIMA équitable</td><td><code>sarima_all_9892_fair_comparison.py</code></td></tr>
+<tr><td>SARIMAX grille complète</td><td><code>sarimax_all_9892_compact.py</code></td></tr>
+<tr><td>Projection SARIMA 2000–2025</td><td><code>predict_sarima_2000_2025.py</code></td></tr>
+<tr><td>Projection SARIMAX 2000–2025</td><td><code>predict_sarimax_2000_2025.py</code></td></tr>
+<tr><td>Rapports et figures</td><td><code>generate_sarima_report.py</code>, <code>generate_sarimax_9892_report.py</code></td></tr>
+</table>
+<h2>Fichiers de preuve</h2>
+<ul>
+<li><code>all_9892_best_model/evaluation_summary.json</code> pour SARIMA ;</li>
+<li><code>sarimax_all_9892_compact/evaluation_summary.json</code> pour SARIMAX ;</li>
+<li><code>predictions_2000_2025/validation_summary.json</code> pour les projections SARIMA ;</li>
+<li><code>sarimax_predictions_2000_2025/validation_summary.json</code> pour les projections SARIMAX.</li>
+</ul>
+<h2>Contrôles avant publication</h2>
+<ol>
+<li>vérifier les périodes inscrites dans chaque tableau ;</li>
+<li>conserver les données de calibration séparées du test ;</li>
+<li>archiver le code, les paramètres et un manifeste d’exécution ;</li>
+<li>fixer les graines aléatoires pour les illustrations échantillonnées ;</li>
+<li>indiquer clairement la résolution, l’horizon et l’unité de chaque métrique.</li>
+</ol>
+
+<h1 class="break">16. Conclusion générale</h1>
+<p>Le travail SARIMA/SARIMAX constitue la partie statistique la plus aboutie et la plus rigoureusement comparée du projet. SARIMA capture efficacement la saisonnalité annuelle et bat presque partout la référence naïve. SARIMAX apporte une amélioration supplémentaire nette grâce à ETP et SWI : RMSE moyenne de 1,278 °C, MAE de 1,016 °C et victoire sur 95,8 % des points.</p>
+<p>Ces résultats permettent d’affirmer que SARIMAX est le meilleur modèle statistique mensuel évalué sur toute la grille dans ce protocole. Ils ne permettent pas d’affirmer qu’il est universellement meilleur que les modèles d’apprentissage profond ou que les méthodes publiées sur d’autres données.</p>
+<p>Les projections 2000–2025 sont complètes et techniquement contrôlées, mais prolongent la structure historique. Leur biais froid face aux observations récentes montre la nécessité d’un signal climatique externe ou d’une correction de biais rigoureusement calibrée. Le quantile mapping post-hoc déjà réalisé fournit une preuve de concept utile ; la prochaine étape critique consiste à le valider sur une période indépendante et, idéalement, à introduire les régimes de temps nécessaires à une méthode ADAMONT plus fidèle.</p>
+<div class="good"><b>Conclusion défendable :</b> SARIMAX ETP+SWI améliore robustement SARIMA dans le backtest 1996–1999. La correction de biais est prometteuse mais doit encore faire l’objet d’une validation indépendante avant d’être présentée comme une performance opérationnelle.</div>
+
+<h2>Références et ressources du projet</h2>
+<p class="small">Hernanz, A. et al. (2023), International Journal of Climatology. — Loganathan, P. et al. (2025), Environmental Science and Pollution Research. — Ozbuldu, M. et al. (2025), Pure and Applied Geophysics. — Rampal, N. et al. (2024), Artificial Intelligence for the Earth Systems. — Météo-France, documentation SAFRAN. Les métadonnées bibliographiques définitives doivent être vérifiées avant dépôt académique.</p>
+<p class="small">Sources numériques : fichiers JSON, CSV, scripts et figures du dépôt <code>climate_project</code>. Rapport généré à partir des résultats conservés localement le 1er septembre 2026.</p>
+</body>
+</html>
