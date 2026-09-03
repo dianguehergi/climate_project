@@ -18,7 +18,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-from config import FIGURE_DIR, METRICS_DIR, create_output_directories
+from src.utils.config import FIGURE_DIR, METRICS_DIR, create_output_directories
 
 
 def save_map(df, column, title, label, filename):

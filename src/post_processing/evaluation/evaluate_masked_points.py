@@ -17,7 +17,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-from config import (
+from src.utils.config import (
     METRICS_DIR,
     MODEL_DIR,
     PERSONAL_PROCESSED_DATA_DIR,

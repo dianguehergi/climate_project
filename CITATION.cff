@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Si vous utilisez ce logiciel, merci de le citer comme indiqué ci-dessous."
+title: "Prévision climatique locale sur données SAFRAN"
+type: software
+version: 1.0.0
+date-released: 2026-09-03
+authors:
+  - family-names: Mombo Mombo
+    given-names: Ousmane
+  - family-names: Diangue
+    given-names: Hergi
+  - family-names: de Nzoghe
+    given-names: Yann
+  - family-names: Mouketou
+    given-names: Owen
+repository-code: "https://github.com/dianguehergi/climate_project"
+license: MIT
+keywords:
+  - climate downscaling
+  - SAFRAN
+  - ADAMONT
+  - SARIMAX
+  - XGBoost
+  - ConvLSTM

@@ -7,22 +7,22 @@ import pandas as pd
 
 
 PRED_PATH = Path(
-    "archive_old/tcn_convlstm/outputs/predictions/"
+    "results/deep_learning/predictions/"
     "forecast_2000_2025_autoregressive_masked_5x5.npy"
 )
 
 DATES_PATH = Path(
-    "archive_old/tcn_convlstm/outputs/predictions/"
+    "results/deep_learning/predictions/"
     "forecast_dates_2000_2025.npy"
 )
 
 GRID_PATH = Path(
-    "archive_old/tcn_convlstm/data/processed/"
+    "data/processed/"
     "safran_many_centers_1x1_9892centers_temperature_family.npz"
 )
 
 OUTPUT_PATH = Path(
-    "archive_old/tcn_convlstm/outputs/predictions/"
+    "results/deep_learning/predictions/"
     "forecast_2000_2025_all_points.csv.gz"
 )
 

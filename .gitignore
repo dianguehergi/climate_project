@@ -41,16 +41,11 @@ archive_old/**/outputs/
 archive_old/**/models/
 archive_old/**/vendor/
 
-# Garder les scripts Yann nécessaires au pipeline
-!archive_old/xgboost_ridge/
-!archive_old/xgboost_ridge/scripts/
-!archive_old/xgboost_ridge/scripts/**
-
 # ==============================================================================
 # MODÈLES ET SORTIES GÉNÉRÉES
 # ==============================================================================
 
-models/
+/models/
 outputs/
 
 # ==============================================================================
@@ -70,6 +65,10 @@ outputs/
 # ==============================================================================
 
 archive_old/sarima_sarimax_results/
+
+# Artefacts résiduels
+*.py.save
+*_old_disabled.sh
 
 # ==============================================================================
 # BINAIRES NVIDIA / INSTALLATEURS
@@ -95,3 +94,11 @@ archive_old/**/*.pyc
 
 # Comparaisons prédiction par prédiction trop volumineuses
 results/model_comparison/tables/prediction_level_comparison.parquet
+
+!data/raw/.gitkeep
+
+.local_artifacts/
+
+!data/raw/
+data/raw/*
+!data/raw/.gitkeep

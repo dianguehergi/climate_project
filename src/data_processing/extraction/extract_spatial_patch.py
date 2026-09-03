@@ -16,7 +16,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-from config import (  # noqa: E402
+from src.utils.config import (  # noqa: E402
     DAILY_DATA_PATH,
     SPATIAL_CENTER_SERIES_PATH,
     SPATIAL_PATCH_METADATA_PATH,

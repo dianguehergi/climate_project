@@ -26,7 +26,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-from config import (  # noqa: E402
+from src.utils.config import (  # noqa: E402
     FIGURE_DIR,
     LOG_DIR,
     MONTHLY_DATA_PATH,

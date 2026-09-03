@@ -15,7 +15,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
-from config import (  # noqa: E402
+from src.utils.config import (  # noqa: E402
     METRICS_DIR,
     PREDICTION_DIR,
     create_output_directories,
